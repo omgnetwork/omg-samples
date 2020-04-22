@@ -129,7 +129,7 @@ Alice's rootchain balance: [
 ]
 ```
 
-4. Logging childchain balances for Bob 
+### 4. Logging childchain balances for Bob 
 ```
 // childchain balances for Bob
 const bobsBalanceArray = await childChain.getBalance(bobAddress);
@@ -161,7 +161,7 @@ Bob's childchain balance: [
 ]
 ```
 
-5. Logging rootchain balances for Bob
+### 5. Logging rootchain balances for Bob
 ```
 // ETH rootchain balance for Bob
 const bobRootchainBalance = await web3.eth.getBalance(bobAddress);
