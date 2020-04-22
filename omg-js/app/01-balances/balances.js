@@ -7,13 +7,16 @@ const web3 = new Web3(new Web3.providers.HttpProvider(config.eth_node), null, {
 });
 const childChain = new ChildChain({
   watcherUrl: config.watcher_url,
+  watcherProxyUrl: config.watcher_proxy_url,
   plasmaContractAddress: config.plasmaframework_contract_address,
 });
+const aliceAddress = config.alice_eth_address;
+const bobAddress = config.bob_eth_address;
+const erc20ContractAddress = config.erc20_contract_address;
 
 async function logBalances() {
-  const alicesBalanceArray = await childChain.getBalance(
-    config.alice_eth_address
-  );
+  // childchain balances for Alice
+  const alicesBalanceArray = await childChain.getBalance(aliceAddress);
   const aliceChildchainBalance = alicesBalanceArray.map((i) => {
     return {
       currency:
@@ -24,9 +27,16 @@ async function logBalances() {
           : i.amount,
     };
   });
-  const aliceRootchainBalance = await web3.eth.getBalance(
-    config.alice_eth_address
+  console.log(
+    `Alice's childchain balance: ${JSON.stringify(
+      aliceChildchainBalance,
+      null,
+      2
+    )}`
   );
+
+  // ETH rootchain balance for Alice
+  const aliceRootchainBalance = await web3.eth.getBalance(aliceAddress);
   const aliceRootchainBalances = [
     {
       currency: "ETH",
@@ -36,19 +46,30 @@ async function logBalances() {
       )} ETH`,
     },
   ];
-
-  if (config.erc20_contract_address) {
+  
+  // ERC20 rootchain balance for Alice
+  if (erc20ContractAddress) {
     const aliceRootchainERC20Balance = await OmgUtil.getErc20Balance({
       web3,
-      address: config.alice_eth_address,
-      erc20Address: config.erc20_contract_address,
+      address: aliceAddress,
+      erc20Address: erc20ContractAddress,
     });
     aliceRootchainBalances.push({
-      currency: config.erc20_contract_address,
+      currency: erc20ContractAddress,
       amount: aliceRootchainERC20Balance,
     });
   }
-  const bobsBalanceArray = await childChain.getBalance(config.bob_eth_address);
+
+  console.log(
+    `Alice's rootchain balance: ${JSON.stringify(
+      aliceRootchainBalances,
+      null,
+      2
+    )}`
+  );
+
+  // childchain balances for Bob
+  const bobsBalanceArray = await childChain.getBalance(bobAddress);
   const bobChildchainBalance = bobsBalanceArray.map((i) => {
     return {
       currency:
@@ -59,8 +80,12 @@ async function logBalances() {
           : i.amount,
     };
   });
+  console.log(
+    `Bob's childchain balance: ${JSON.stringify(bobChildchainBalance, null, 2)}`
+  );
 
-  const bobRootchainBalance = await web3.eth.getBalance(config.bob_eth_address);
+  // ETH rootchain balance for Bob
+  const bobRootchainBalance = await web3.eth.getBalance(bobAddress);
   const bobRootchainBalances = [
     {
       currency: "ETH",
@@ -68,37 +93,20 @@ async function logBalances() {
     },
   ];
 
-  if (config.erc20_contract_address) {
+  // ERC20 rootchain balance for Bob
+  if (erc20ContractAddress) {
     const bobRootchainERC20Balance = await OmgUtil.getErc20Balance({
       web3,
-      address: config.bob_eth_address,
-      erc20Address: config.erc20_contract_address,
+      address: bobAddress,
+      erc20Address: erc20ContractAddress,
     });
     bobRootchainBalances.push({
-      currency: config.erc20_contract_address,
+      currency: erc20ContractAddress,
       amount: bobRootchainERC20Balance,
     });
   }
   console.log(
-    `Alice's rootchain balance: ${JSON.stringify(
-      aliceRootchainBalances,
-      null,
-      2
-    )}`
-  );
-  console.log(
-    `Alice's childchain balance: ${JSON.stringify(
-      aliceChildchainBalance,
-      null,
-      2
-    )}`
-  );
-  console.log("----------");
-  console.log(
     `Bob's rootchain balance: ${JSON.stringify(bobRootchainBalances, null, 2)}`
-  );
-  console.log(
-    `Bob's childchain balance: ${JSON.stringify(bobChildchainBalance, null, 2)}`
   );
 }
 
