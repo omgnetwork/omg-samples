@@ -202,3 +202,23 @@ Bob's rootchain balance: [
   }
 ]
 ```
+
+## Running the sample
+1. Enter `omg-js` folder.
+2. Install dependencies:
+```
+npm install
+```
+3. Create and modify `.env` configuration file with required values (look `env.example` or README of this repo).
+
+4. Modify `entry` property of the `webpack.config.js`:
+```
+entry: {
+  app: "./app/01-balances/balances.js",
+}
+```
+5. Run the Webpack and Webpack server:
+```
+npm run start
+```
+6. Open your browser and development console at [http://localhost:3000](http://localhost:3000) to follow code sample logs.
