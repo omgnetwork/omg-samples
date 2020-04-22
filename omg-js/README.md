@@ -9,6 +9,7 @@ A Javascript application that allows interacting with `omg-js` library. Examples
 | File/folder            | Description                                                          |
 | ---------------------- | -------------------------------------------------------------------- |
 | `app`                  | Sample source files.                                                 |
+| `dist`                 | Build files that can be hosted on a server.                          |
 | `01-balances`          | Implementation for retrieving root chain and child chain balances.   |
 | `02-deposit-eth`       | Implementation for depositing ETH to the OMG Network.                |
 | `03-deposit-erc20`     | Implementation for depositing ERC20 tokens to the OMG Network.       |
@@ -97,7 +98,33 @@ BLOCKS_TO_WAIT_FOR_TXN=20
 
 ## Running the sample
 
-TBD
+1. Modify `entry` property of the `webpack.config.js` file to match the sample you want to run:
+
+```
+entry: {
+  app: "./app/<SAMPLE_FOLDER>/<SAMPLE_JS_FILE_NAME>",
+}
+```
+
+Example:
+
+```
+entry: {
+  app: "./app/01-balances/balances.js",
+}
+```
+
+2. Run the Webpack and Webpack server:
+
+```
+npm run start
+```
+
+You will see a new `dist` folder created with static `bundle.js` and `index.html` files.
+
+3. Open your browser and development console at [http://localhost:3000](http://localhost:3000) to follow code sample logs.
+
+![](https://i.imgur.com/SBZgfef.png)
 
 ## Contributing
 

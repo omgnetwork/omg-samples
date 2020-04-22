@@ -2,8 +2,25 @@
   "name": "omg-js-samples",
   "version": "1.0.0",
   "description": "Code samples for omg-js library",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "start": "webpack && webpack-dev-server"
+  },
+  "dependencies": {
+    "@omisego/omg-js": "^3.1.0-0.4.6",
+    "bn.js": "^5.0.0",
+    "human-standard-token-abi": "^2.0.0",
+    "number-to-bn": "^1.7.0",
+    "omg-json-bigint": "^1.0.0",
+    "promise-retry": "^1.1.1",
+    "web3": "^1.2.6"
+  },
+  "devDependencies": {
+    "dotenv-webpack": "^1.7.0",
+    "html-webpack-plugin": "^4.2.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
