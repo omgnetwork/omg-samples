@@ -46,7 +46,7 @@ async function logBalances() {
       )} ETH`,
     },
   ];
-  
+
   // ERC20 rootchain balance for Alice
   if (erc20ContractAddress) {
     const aliceRootchainERC20Balance = await OmgUtil.getErc20Balance({
@@ -110,4 +110,4 @@ async function logBalances() {
   );
 }
 
-logBalances();
+export { logBalances };

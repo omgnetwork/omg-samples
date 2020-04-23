@@ -17,8 +17,13 @@
     "web3": "^1.2.6"
   },
   "devDependencies": {
+    "css-loader": "^3.5.2",
     "dotenv-webpack": "^1.7.0",
     "html-webpack-plugin": "^4.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.1.4",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
