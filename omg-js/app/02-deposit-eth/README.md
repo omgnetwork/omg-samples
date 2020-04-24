@@ -49,7 +49,7 @@ const depositAmount = new BigNumber(
 
 ### 2. Logging root chain and child chain ETH balances for Alice
 
-Logging balances helps to see the changes in the wallet addresses before and after depositing funds. To see a more detailed example, please refer to [Retreive Balances](../01-balances/README.md) sample.
+Logging balances helps to see the changes in the wallet addresses before and after depositing funds. To see a more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
 
 ```
 async function logBalances() {
@@ -123,7 +123,7 @@ Alice's child chain ETH balance: 0.606903 ETH
 
 - A typical deposit uses `deposit` function provided by the `Rootchain` module of the `omg-js` library.
 - After the funds are confirmed on the rootchain, child chain server generates a transaction in a form of UTXO corresponding to the deposited amount. UTXO (unspent output) is a model used to keep a track of balances on the OMG Network.
-- If a transaction is successful, you will see a unique `transactionHash` that you can verify on Ethereum block explorer, such as [Etherescan](https://ropsten.etherscan.io/tx/0x0e7d060a63cb65f629cc6d053e71397c7fa3250b41e36cb2cae40b2acb4350a2). Copy the hash and paste in the search box to see details.
+- If a transaction is successful, you will see a unique `transactionHash` that you can verify on Ethereum block explorer, such as [Etherscan](https://ropsten.etherscan.io/tx/0x0e7d060a63cb65f629cc6d053e71397c7fa3250b41e36cb2cae40b2acb4350a2). Copy the hash and paste in the search box to see details.
 - Depositing also involves forming a pseudo-block on the child chain. Such a block contains a single transaction with the deposited funds as a new UTXO. You can check a new block on the OMG Network's [block explorer](https://blockexplorer.ropsten.v1.omg.network).
 
 ```
@@ -254,6 +254,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `02 - Make a Deposit ETH` sample on the left side, observe the logs on the right.
+6. Select `02 - Make an ETH Deposit` sample on the left side, observe the logs on the right.
 
 ![img](../assets/images/02.png)

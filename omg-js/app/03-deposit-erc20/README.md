@@ -4,7 +4,7 @@ _By the end of this tutorial you should know how to deposit ERC20 tokens to the 
 
 ## Intro
 
-The example uses `deposit` and `approveToken` functions provided by the `omg-js` library to deposit ERC20 tokens to the root chain smart contract and subsequently to the child chain. The overall process for depositing ERC20 tokens is similar to depositing ETH. If you need more details on certain steps, please refer to [Make a Deposit ETH](../02-deposit-eth/README.md) sample.
+The example uses `deposit` and `approveToken` functions provided by the `omg-js` library to deposit ERC20 tokens to the root chain smart contract and subsequently to the child chain. The overall process for depositing ERC20 tokens is similar to depositing ETH. If you need more details on certain steps, please refer to [Make an ETH Deposit](../02-deposit-eth/README.md) sample.
 
 ## Prerequisites
 
@@ -50,7 +50,7 @@ const depositAmount = new BigNumber(
 
 ### 2. Logging root chain and child chain ETH balances for Alice
 
-Logging balances helps to see the changes in the wallet addresses before and after depositing funds. To see a more detailed example, please refer to [Retreive Balances](../01-balances/README.md) sample.
+Logging balances helps to see the changes in the wallet addresses before and after depositing funds. To see a more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
 
 ```
 async function logBalances() {
@@ -249,6 +249,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `02 - Make a Deposit ETH` sample on the left side, observe the logs on the right.
+6. Select `03 - Make an ERC20 Deposit` sample on the left side, observe the logs on the right.
 
 ![img](../assets/images/03.png)

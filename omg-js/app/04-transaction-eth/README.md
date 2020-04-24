@@ -45,7 +45,7 @@ const bobAddress = config.bob_eth_address;
 
 ### 2. Logging child chain ETH balances for Alice and Bob
 
-Logging balances helps to see the changes in the wallets before and after making any transaction. To see a more detailed example, please refer to [Retreive Balances](../01-balances/README.md) sample.
+Logging balances helps to see the changes in the wallets before and after making any transaction. To see a more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
 
 ```
 async function logBalances() {
@@ -271,6 +271,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `04 - Make a Transfer ETH` sample on the left side, observe the logs on the right.
+6. Select `04 - Make an ETH Transfer` sample on the left side, observe the logs on the right.
 
 ![img](../assets/images/04.png)
