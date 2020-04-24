@@ -10,7 +10,7 @@ A Javascript application that allows interacting with `omg-js` library. Examples
 | ---------------------- | -------------------------------------------------------------------- |
 | `app`                  | Sample source files.                                                 |
 | `dist`                 | Build files that can be hosted on a server.                          |
-| `01-balances`          | Implementation for retrieving rootchain and childchain balances.   |
+| `01-balances`          | Implementation for retrieving rootchain and childchain balances.     |
 | `02-deposit-eth`       | Implementation for depositing ETH to the OMG Network.                |
 | `03-deposit-erc20`     | Implementation for depositing ERC20 tokens to the OMG Network.       |
 | `04-transaction-eth`   | Implementation for making ETH transactions on the OMG Network.       |
@@ -21,14 +21,16 @@ A Javascript application that allows interacting with `omg-js` library. Examples
 | `09-exit-erc20`        | Implementation for exiting of ERC20 tokens from the OMG Network.     |
 | `10-inflight-exit-eth` | Implementation for in-fligh exits of ETH funds from the OMG Network. |
 | `11-process-exits`     | Implementation for processing exits on the OMG Network.              |
-| `index.html`           | The UI of the sample.                                                |
+| `helpers`              | Scripts that help to run certain parts of code samples.              |
+| `assets`               | Project assets (images, css, fonts, etc).                            |
 | `.gitignore`           | Defines what to ignore at commit time.                               |
-| `changelog.md`         | List of changes to the sample.                                       |
 | `package.json`         | Package manifest for npm.                                            |
+| `package-lock.json`    | Package manifest for npm (extended).                                 |
+| `config.js`            | Configuration parameters for the sample.                             |
+| `webpack.config.js`    | Webpack configurations.                                              |
+| `CHANGELOG.md`         | List of changes to the sample.                                       |
 | `README.md`            | Project's README file.                                               |
 | `LICENSE`              | The license for the sample.                                          |
-| `config.js`            | Configuration parameters for the sample.                             |
-| `server.js`            | Implements a simple Node server to serve index.html.                 |
 
 ## Prerequisites
 
@@ -107,31 +109,19 @@ BLOCKS_TO_WAIT_FOR_TXN=20
 
 ## Running the sample
 
-1. Modify `entry` property of the `webpack.config.js` file to match the sample you want to run:
-
-```
-entry: {
-  app: "./app/<SAMPLE_FOLDER>/<SAMPLE_JS_FILE_NAME>",
-}
-```
-
-Example:
-
-```
-entry: {
-  app: "./app/01-balances/balances.js",
-}
-```
-
-2. Run the Webpack and Webpack server:
+1. Run the app:
 
 ```
 npm run start
 ```
 
-You will see a new `dist` folder created with static `bundle.js` and `index.html` files.
+You will see a `dist` folder created with static `.js`, `.css` and `index.html` files. The project uses Webpack and Webpack server for demonstration purposes. Feel free to change it to your preferred way of building js files.
 
-3. Open your browser and development console at [http://localhost:3000](http://localhost:3000) to follow code sample logs.
+2. Open your browser at [http://localhost:3000](http://localhost:3000).
+
+3. Select the sample you're most interested in on the left side, observe the logs on the right.
+
+![img](app/assets/images/01.png)
 
 ## Contributing
 

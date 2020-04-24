@@ -1,16 +1,14 @@
 const path = require("path");
 const Dotenv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const isDevelopment = process.env.NODE_ENV === "development";
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const isDevelopment = process.env.NODE_ENV === "development";
 
 module.exports = {
   mode: "development",
   entry: {
     app: "./app/index.js",
     balances: "./app/01-balances/balances.js",
-    utxos: "./app/07-show-utxos/show-utxos.js",
-    depositEth: "./app/02-deposit-eth/deposit-eth.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -33,10 +31,10 @@ module.exports = {
       defaults: false,
     }),
     new MiniCssExtractPlugin({
-      filename: isDevelopment ? "[name].css" : "[name].[hash].css",
-      chunkFilename: isDevelopment ? "[id].css" : "[id].[hash].css",
+      filename: "[name].css"
     }),
   ],
+  // Windows only
   node: {
     fs: "empty",
     net: "empty",
@@ -44,25 +42,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.module\.s(a|c)ss$/,
-        loader: [
-          isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              sourceMap: isDevelopment,
-            },
-          },
-          {
-            loader: "sass-loader",
-            options: {
-              sourceMap: isDevelopment,
-            },
-          },
-        ],
-      },
       {
         test: /\.s(a|c)ss$/,
         exclude: /\.module.(s(a|c)ss)$/,

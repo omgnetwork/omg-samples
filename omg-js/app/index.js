@@ -1,6 +1,4 @@
 import { logBalances } from "./01-balances/balances";
-import { childchainUtxos } from "./07-show-utxos/show-utxos";
-import { childchainDepositEth } from "./02-deposit-eth/deposit-eth.js";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -14,7 +12,7 @@ const samples = [
   },
   {
     title: "02 - Make a Deposit ETH",
-    script: childchainDepositEth,
+    script: "",
     code: "",
     readme: "",
   },
@@ -38,7 +36,7 @@ const samples = [
   },
   {
     title: "06 - Show UTXOs",
-    script: childchainUtxos,
+    script: "",
     code: "",
     readme: "",
   },
@@ -149,7 +147,7 @@ function createLogBox(home) {
   subtitle.classList.add("subtitle");
 
   title.innerText = "OMG-JS Code Samples";
-  subtitle.innerText = "Configurations";
+  subtitle.innerText = "Hello OMG!";
 
   block.appendChild(title);
   title.appendChild(subtitle);

@@ -204,21 +204,23 @@ Bob's rootchain balance: [
 ```
 
 ## Running the sample
-1. Enter `omg-js` folder.
+1. Enter the `omg-js` folder if you're in the root `omg-samples` repository:
+```
+cd omg-js
+```
 2. Install dependencies:
 ```
 npm install
 ```
-3. Create and modify `.env` configuration file with required values (look `env.example` or README of this repo).
+3. Create `.env` file, modify configurations with required values (look at [.env.example](../../.env.example) or [README](../../README.md) of the `omg-js` repo for details).
 
-4. Modify `entry` property of the `webpack.config.js`:
-```
-entry: {
-  app: "./app/01-balances/balances.js",
-}
-```
-5. Run the Webpack and Webpack server:
+4. Run the app:
 ```
 npm run start
 ```
-6. Open your browser and development console at [http://localhost:3000](http://localhost:3000) to follow code sample logs.
+
+5. Open your browser at [http://localhost:3000](http://localhost:3000).
+
+6. Select `01-balances` sample on the left side, observe the logs on the right.
+
+![img](../assets/images/01.png)
