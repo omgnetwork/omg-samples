@@ -9,6 +9,7 @@ module.exports = {
   entry: {
     app: "./app/index.js",
     balances: "./app/01-balances/balances.js",
+    depositETH: "./app/02-deposit-eth/deposit-eth.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

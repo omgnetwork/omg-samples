@@ -103,7 +103,7 @@ ALICE_ERC20_TRANSFER_AMOUNT=0.34
 BOB_ETH_ADDRESS=0x8b63BB2B829813ECe5C2F378d47b2862bE271c6C
 BOB_ETH_ADDRESS_PRIVATE_KEY=1027c05dcc6dba6b8fb6bb6efc90e374fee7da73e1069279be61a2dcf533b856
 MILLIS_TO_WAIT_FOR_NEXT_BLOCK=1000
-BLOCKS_TO_WAIT_FOR_TXN=5
+BLOCKS_TO_WAIT_FOR_TXN=20
 ```
 
 > Private keys presented in this config file have only Ropsten testnet tokens. Please, spend them considerably, share with others. Make sure to never share your private keys to anyone if you deal with real funds (Ethereum mainnet).

@@ -1,4 +1,5 @@
 import { logBalances } from "./01-balances/balances";
+import { depositETH } from "./02-deposit-eth/deposit-eth";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -12,7 +13,7 @@ const samples = [
   },
   {
     title: "02 - Make a Deposit ETH",
-    script: "",
+    script: depositETH,
     code: "",
     readme: "",
   },
