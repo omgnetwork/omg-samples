@@ -13,46 +13,72 @@ const rootChain = new RootChain({
 });
 const childChain = new ChildChain({
   watcherUrl: config.watcher_url,
-  watcherProxyUrl: config.watcher_proxy_url,
   plasmaContractAddress: config.plasmaframework_contract_address,
 });
+
 const aliceAddress = config.alice_eth_address;
 const alicePrivateKey = config.alice_eth_address_private_key;
 const depositAmount = new BigNumber(
-  web3.utils.toWei(config.alice_eth_deposit_amount, "ether")
+  web3.utils.toWei(config.alice_erc20_deposit_amount, "ether")
 );
 
 async function logBalances() {
-  const rootchainBalance = await web3.eth.getBalance(aliceAddress);
+  const rootchainERC20Balance = await OmgUtil.getErc20Balance({
+    web3,
+    address: aliceAddress,
+    erc20Address: config.erc20_contract_address,
+  });
   const childchainBalanceArray = await childChain.getBalance(aliceAddress);
-  const ethObject = childchainBalanceArray.find(
-    (i) => i.currency === OmgUtil.transaction.ETH_CURRENCY
+  const erc20Object = childchainBalanceArray.find(
+    (i) =>
+      i.currency.toLowerCase() === config.erc20_contract_address.toLowerCase()
   );
-  const childchainETHBalance = ethObject
-    ? `${web3.utils.fromWei(String(ethObject.amount))} ETH`
-    : "0 ETH";
+  const childchainERC20Balance = erc20Object ? erc20Object.amount : 0;
 
   console.log(
-    `Alice's root chain ETH balance: ${web3.utils.fromWei(
-      String(rootchainBalance),
+    `Alice's root chain ERC20 balance: ${web3.utils.fromWei(
+      rootchainERC20Balance.toString(),
       "ether"
-    )} ETH`
+    )}`
   );
-  console.log(`Alice's child chain ETH balance: ${childchainETHBalance}`);
+  console.log(
+    `Alice's child chain ERC20 balance: ${web3.utils.fromWei(
+      childchainERC20Balance.toString(),
+      "ether"
+    )}`
+  );
 }
 
-async function depositETH() {
+async function depositERC20() {
+  if (!config.erc20_contract_address) {
+    console.log("Please define an ERC20 contract address in your .env");
+    return;
+  }
+
   await logBalances();
   console.log("-----");
+
+  console.log("Approving ERC20 for deposit...");
+  const approveRes = await rootChain.approveToken({
+    erc20Address: config.erc20_contract_address,
+    amount: depositAmount,
+    txOptions: {
+      from: aliceAddress,
+      privateKey: alicePrivateKey,
+      gas: 6000000,
+    },
+  });
+  console.log("ERC20 approved: " + String(approveRes.transactionHash));
 
   console.log(
     `Depositing ${web3.utils.fromWei(
       depositAmount.toString(),
       "ether"
-    )} ETH from the root chain to the child chain`
+    )} ERC20 from the root chain to the child chain`
   );
   const transactionReceipt = await rootChain.deposit({
     amount: depositAmount,
+    currency: config.erc20_contract_address,
     txOptions: {
       from: aliceAddress,
       privateKey: alicePrivateKey,
@@ -76,4 +102,8 @@ async function depositETH() {
   await logBalances();
 }
 
-export { depositETH };
+export { depositERC20 };
+
+
+
+

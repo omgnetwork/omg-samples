@@ -1,5 +1,6 @@
 import { logBalances } from "./01-balances/balances";
 import { depositETH } from "./02-deposit-eth/deposit-eth";
+import { depositERC20 } from "./03-deposit-erc20/deposit-erc20";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -19,7 +20,7 @@ const samples = [
   },
   {
     title: "03 - Make a Deposit ERC20",
-    script: "",
+    script: depositERC20,
     code: "",
     readme: "",
   },

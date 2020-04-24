@@ -15,7 +15,7 @@ const bobAddress = config.bob_eth_address;
 const erc20ContractAddress = config.erc20_contract_address;
 
 async function logBalances() {
-  // childchain balances for Alice
+  // child chain balances for Alice
   const alicesBalanceArray = await childChain.getBalance(aliceAddress);
   const aliceChildchainBalance = alicesBalanceArray.map((i) => {
     return {
@@ -25,14 +25,14 @@ async function logBalances() {
     };
   });
   console.log(
-    `Alice's childchain balance: ${JSON.stringify(
+    `Alice's child chain balance: ${JSON.stringify(
       aliceChildchainBalance,
       null,
       2
     )}`
   );
 
-  // ETH rootchain balance for Alice
+  // ETH root chain balance for Alice
   const aliceRootchainBalance = await web3.eth.getBalance(aliceAddress);
   const aliceRootchainBalances = [
     {
@@ -41,7 +41,7 @@ async function logBalances() {
     },
   ];
 
-  // ERC20 rootchain balance for Alice
+  // ERC20 root chain balance for Alice
   if (erc20ContractAddress) {
     const aliceRootchainERC20Balance = await OmgUtil.getErc20Balance({
       web3,
@@ -55,14 +55,14 @@ async function logBalances() {
   }
 
   console.log(
-    `Alice's rootchain balance: ${JSON.stringify(
+    `Alice's root chain balance: ${JSON.stringify(
       aliceRootchainBalances,
       null,
       2
     )}`
   );
 
-  // childchain balances for Bob
+  // child chain balances for Bob
   const bobsBalanceArray = await childChain.getBalance(bobAddress);
   const bobChildchainBalance = bobsBalanceArray.map((i) => {
     return {
@@ -72,10 +72,10 @@ async function logBalances() {
     };
   });
   console.log(
-    `Bob's childchain balance: ${JSON.stringify(bobChildchainBalance, null, 2)}`
+    `Bob's child chain balance: ${JSON.stringify(bobChildchainBalance, null, 2)}`
   );
 
-  // ETH rootchain balance for Bob
+  // ETH root chain balance for Bob
   const bobRootchainBalance = await web3.eth.getBalance(bobAddress);
   const bobRootchainBalances = [
     {
@@ -84,7 +84,7 @@ async function logBalances() {
     },
   ];
 
-  // ERC20 rootchain balance for Bob
+  // ERC20 root chain balance for Bob
   if (erc20ContractAddress) {
     const bobRootchainERC20Balance = await OmgUtil.getErc20Balance({
       web3,
@@ -97,7 +97,7 @@ async function logBalances() {
     });
   }
   console.log(
-    `Bob's rootchain balance: ${JSON.stringify(bobRootchainBalances, null, 2)}`
+    `Bob's root chain balance: ${JSON.stringify(bobRootchainBalances, null, 2)}`
   );
 }
 
