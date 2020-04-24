@@ -13,6 +13,9 @@ The example uses `deposit` function provided by `omg-js` library to deposit fund
 3. Depositing funds to the OMG Network
 4. Recording transaction by the Watcher
 
+## Prerequisites
+1. Any amount of ETH in Alice's wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet won't be empty. Otherwise, top it up with [Ropsten faucet](https://faucet.metamask.io/) (for testnet) or actual ETH (for mainnet).
+
 ### 1. App setup
 
 You can find the full Javascript segment of this tutorial in `02-deposit/deposit-eth.js`. The first lines define dependent libraries, set up configs for childchain and rootchain, define wallets` data to be used during the sample.
