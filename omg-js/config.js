@@ -24,7 +24,7 @@ const config = {
   ),
   millis_to_wait_for_next_block:
     process.env.MILLIS_TO_WAIT_FOR_NEXT_BLOCK || 1000,
-  blocks_to_wait_for_txn: process.env.BLOCKS_TO_WAIT_FOR_TXN || 20,
+  blocks_to_wait_for_txn: process.env.BLOCKS_TO_WAIT_FOR_TXN || 3,
 };
 
 export default config;

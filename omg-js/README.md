@@ -23,6 +23,7 @@ A Javascript application that allows interacting with `omg-js` library. Examples
 | `11-process-exits`     | Implementation for processing exits on the OMG Network.              |
 | `helpers`              | Scripts that help to run certain parts of code samples.              |
 | `assets`               | Project assets (images, css, fonts, etc).                            |
+| `index.js`             | Script that generates UI for the project.                            |
 | `.gitignore`           | Defines what to ignore at commit time.                               |
 | `package.json`         | Package manifest for npm.                                            |
 | `package-lock.json`    | Package manifest for npm (extended).                                 |
@@ -77,7 +78,7 @@ ALICE_ERC20_TRANSFER_AMOUNT=        <ERC20 amount Alice will transfer to Bob>
 BOB_ETH_ADDRESS=                    <address of Bob's account>
 BOB_ETH_ADDRESS_PRIVATE_KEY=        <Bob's private key>
 MILLIS_TO_WAIT_FOR_NEXT_BLOCK=      <interval when checking for block confirmation>
-BLOCKS_TO_WAIT_FOR_TXN=             <amount of blocks to wait for confirmation>
+BLOCKS_TO_WAIT_FOR_TXN=             <number of blocks to wait for confirmation>
 ```
 
 - You can set up `ETH_NODE` by launching a local Ethereum node. But due to substantial time consumption this process requires, it's recommended using one of the services that provide such functionality for free: [Infura](https://infura.io), [QuickNode](https://www.quiknode.io), [Rivet](https://rivet.cloud).
@@ -102,7 +103,7 @@ ALICE_ERC20_TRANSFER_AMOUNT=0.34
 BOB_ETH_ADDRESS=0x8b63BB2B829813ECe5C2F378d47b2862bE271c6C
 BOB_ETH_ADDRESS_PRIVATE_KEY=1027c05dcc6dba6b8fb6bb6efc90e374fee7da73e1069279be61a2dcf533b856
 MILLIS_TO_WAIT_FOR_NEXT_BLOCK=1000
-BLOCKS_TO_WAIT_FOR_TXN=20
+BLOCKS_TO_WAIT_FOR_TXN=5
 ```
 
 > Private keys presented in this config file have only Ropsten testnet tokens. Please, spend them considerably, share with others. Make sure to never share your private keys to anyone if you deal with real funds (Ethereum mainnet).
