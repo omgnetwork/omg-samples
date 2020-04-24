@@ -22,7 +22,7 @@ module.exports = {
   plugins: [
     // new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title: "Test",
+      title: "OMG-js Samples",
     }),
     new Dotenv({
       path: "./.env",

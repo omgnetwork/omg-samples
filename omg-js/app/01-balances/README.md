@@ -47,22 +47,18 @@ const childChain = new ChildChain({
 - The `currency` in balance array contains either `0x0000000000000000000000000000000000000000` (states that this is ETH currency) or ERC20 smart contract address (e.g. `0xd74ef52053204c9887df4a0e921b1ae024f6fe31`).
 
 ```
-const alicesBalanceArray = await childChain.getBalance(
-  config.alice_eth_address
-);
+// childchain balances for Alice
+const alicesBalanceArray = await childChain.getBalance(aliceAddress);
 const aliceChildchainBalance = alicesBalanceArray.map((i) => {
   return {
     currency:
       i.currency === OmgUtil.transaction.ETH_CURRENCY ? "ETH" : i.currency,
-    amount:
-      i.currency === OmgUtil.transaction.ETH_CURRENCY
-        ? `${web3.utils.fromWei(String(i.amount))} ETH`
-        : i.amount,
+    amount: web3.utils.fromWei(String(i.amount)),
   };
 });
 console.log(
-  `Alice's rootchain balance: ${JSON.stringify(
-    aliceRootchainBalances,
+  `Alice's childchain balance: ${JSON.stringify(
+    aliceChildchainBalance,
     null,
     2
   )}`
@@ -74,11 +70,11 @@ Example output:
 Alice's childchain balance: [
   {
     "currency": "ETH",
-    "amount": "0.449903 ETH"
+    "amount": "0.576903"
   },
   {
     "currency": "0xd74ef52053204c9887df4a0e921b1ae024f6fe31",
-    "amount": "02e5a104dcdce00008"
+    "amount": "53.440000000000000008"
   }
 ]
 ```
@@ -90,9 +86,10 @@ const aliceRootchainBalance = await web3.eth.getBalance(aliceAddress);
 const aliceRootchainBalances = [
   {
     currency: "ETH",
-    amount: `${web3.utils.fromWei(String(aliceRootchainBalance), "ether")} ETH`,
+    amount: web3.utils.fromWei(String(aliceRootchainBalance), "ether"),
   },
 ];
+
 // ERC20 rootchain balance for Alice
 if (erc20ContractAddress) {
   const aliceRootchainERC20Balance = await OmgUtil.getErc20Balance({
@@ -102,7 +99,7 @@ if (erc20ContractAddress) {
   });
   aliceRootchainBalances.push({
     currency: erc20ContractAddress,
-    amount: aliceRootchainERC20Balance,
+    amount: web3.utils.fromWei(String(aliceRootchainERC20Balance)),
   });
 }
 
@@ -120,11 +117,11 @@ Example output:
 Alice's rootchain balance: [
   {
     "currency": "ETH",
-    "amount": "4.52147852070024 ETH"
+    "amount": "4.39194044450024"
   },
   {
     "currency": "0xd74ef52053204c9887df4a0e921b1ae024f6fe31",
-    "amount": "45199999999999999982"
+    "amount": "45.199999999999999982"
   }
 ]
 ```
@@ -137,10 +134,7 @@ const bobChildchainBalance = bobsBalanceArray.map((i) => {
   return {
     currency:
       i.currency === OmgUtil.transaction.ETH_CURRENCY ? "ETH" : i.currency,
-    amount:
-      i.currency === OmgUtil.transaction.ETH_CURRENCY
-        ? `${web3.utils.fromWei(String(i.amount))} ETH`
-        : i.amount,
+    amount: web3.utils.fromWei(String(i.amount)),
   };
 });
 console.log(
@@ -152,11 +146,11 @@ Example output:
 Bob's childchain balance: [
   {
     "currency": "ETH",
-    "amount": "0.02319 ETH"
+    "amount": "0.02319"
   },
   {
     "currency": "0xd74ef52053204c9887df4a0e921b1ae024f6fe31",
-    "amount": "12dfb0cb5e88000a"
+    "amount": "1.36000000000000001"
   }
 ]
 ```
@@ -168,9 +162,10 @@ const bobRootchainBalance = await web3.eth.getBalance(bobAddress);
 const bobRootchainBalances = [
   {
     currency: "ETH",
-    amount: `${web3.utils.fromWei(String(bobRootchainBalance), "ether")} ETH`,
+    amount: web3.utils.fromWei(String(bobRootchainBalance), "ether"),
   },
 ];
+
 // ERC20 rootchain balance for Bob
 if (erc20ContractAddress) {
   const bobRootchainERC20Balance = await OmgUtil.getErc20Balance({
@@ -180,7 +175,7 @@ if (erc20ContractAddress) {
   });
   bobRootchainBalances.push({
     currency: erc20ContractAddress,
-    amount: bobRootchainERC20Balance,
+    amount: web3.utils.fromWei(String(bobRootchainERC20Balance)),
   });
 }
 console.log(
@@ -194,7 +189,7 @@ Example outputs:
 Bob's rootchain balance: [
   {
     "currency": "ETH",
-    "amount": "3.297270599 ETH"
+    "amount": "3.297270599"
   },
   {
     "currency": "0xd74ef52053204c9887df4a0e921b1ae024f6fe31",

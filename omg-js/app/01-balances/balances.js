@@ -21,10 +21,7 @@ async function logBalances() {
     return {
       currency:
         i.currency === OmgUtil.transaction.ETH_CURRENCY ? "ETH" : i.currency,
-      amount:
-        i.currency === OmgUtil.transaction.ETH_CURRENCY
-          ? `${web3.utils.fromWei(String(i.amount))} ETH`
-          : i.amount,
+      amount: web3.utils.fromWei(String(i.amount)),
     };
   });
   console.log(
@@ -40,10 +37,7 @@ async function logBalances() {
   const aliceRootchainBalances = [
     {
       currency: "ETH",
-      amount: `${web3.utils.fromWei(
-        String(aliceRootchainBalance),
-        "ether"
-      )} ETH`,
+      amount: web3.utils.fromWei(String(aliceRootchainBalance), "ether"),
     },
   ];
 
@@ -56,7 +50,7 @@ async function logBalances() {
     });
     aliceRootchainBalances.push({
       currency: erc20ContractAddress,
-      amount: aliceRootchainERC20Balance,
+      amount: web3.utils.fromWei(String(aliceRootchainERC20Balance)),
     });
   }
 
@@ -74,10 +68,7 @@ async function logBalances() {
     return {
       currency:
         i.currency === OmgUtil.transaction.ETH_CURRENCY ? "ETH" : i.currency,
-      amount:
-        i.currency === OmgUtil.transaction.ETH_CURRENCY
-          ? `${web3.utils.fromWei(String(i.amount))} ETH`
-          : i.amount,
+      amount: web3.utils.fromWei(String(i.amount)),
     };
   });
   console.log(
@@ -89,7 +80,7 @@ async function logBalances() {
   const bobRootchainBalances = [
     {
       currency: "ETH",
-      amount: `${web3.utils.fromWei(String(bobRootchainBalance), "ether")} ETH`,
+      amount: web3.utils.fromWei(String(bobRootchainBalance), "ether"),
     },
   ];
 
@@ -102,7 +93,7 @@ async function logBalances() {
     });
     bobRootchainBalances.push({
       currency: erc20ContractAddress,
-      amount: bobRootchainERC20Balance,
+      amount: web3.utils.fromWei(String(bobRootchainERC20Balance)),
     });
   }
   console.log(
