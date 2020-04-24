@@ -3,6 +3,7 @@ import { depositETH } from "./02-deposit-eth/deposit-eth";
 import { depositERC20 } from "./03-deposit-erc20/deposit-erc20";
 import { transactionETH } from "./04-transaction-eth/transaction-eth.js";
 import { transactionERC20 } from "./05-transaction-erc20/transaction-erc20.js";
+import { showUTXOs } from "./06-show-utxos/show-utxos.js";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -40,7 +41,7 @@ const samples = [
   },
   {
     title: "06 - Show UTXOs",
-    script: "",
+    script: showUTXOs,
     code: "",
     readme: "",
   },
