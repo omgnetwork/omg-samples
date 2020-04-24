@@ -1,6 +1,7 @@
 import { logBalances } from "./01-balances/balances";
 import { depositETH } from "./02-deposit-eth/deposit-eth";
 import { depositERC20 } from "./03-deposit-erc20/deposit-erc20";
+import { transactionETH } from "./04-transaction-eth/transaction-eth.js";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -26,7 +27,7 @@ const samples = [
   },
   {
     title: "04 - Make Transfer ETH",
-    script: "",
+    script: transactionETH,
     code: "",
     readme: "",
   },

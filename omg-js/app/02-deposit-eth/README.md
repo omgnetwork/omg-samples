@@ -8,7 +8,7 @@ The example uses a `deposit` function provided by the `omg-js` library to deposi
 
 ## Prerequisites
 
-1. Any amount of ETH in Alice's wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet won't be empty. Otherwise, top it up with [Ropsten faucet](https://faucet.metamask.io/) (for testnet) or actual ETH (for mainnet).
+1. Any amount of ETH in Alice's Web3 wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain test ETH. Otherwise, top it up with [Ropsten faucet](https://faucet.metamask.io/) (for testnet) or actual ETH (for mainnet).
 
 ## Steps
 

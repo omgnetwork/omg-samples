@@ -4,7 +4,7 @@ _By the end of this tutorial you should know how to deposit ERC20 tokens to the 
 
 ## Intro
 
-The example uses `deposit` and `approveToken` functions provided by the `omg-js` library to deposit ERC20 tokens to the root chain smart contract and subsequently to the child chain. The overall process for depositing ERC20 tokens is similar to depositing ETH. If you need more details on certain steps, please refer to [Make a Deposit ETH](./deposit-erc20.js) sample.
+The example uses `deposit` and `approveToken` functions provided by the `omg-js` library to deposit ERC20 tokens to the root chain smart contract and subsequently to the child chain. The overall process for depositing ERC20 tokens is similar to depositing ETH. If you need more details on certain steps, please refer to [Make a Deposit ETH](../02-deposit-eth/README.md) sample.
 
 ## Prerequisites
 

@@ -43,7 +43,7 @@ const childChain = new ChildChain({
   }
 ]
 ``` 
-- The amount in balance array is an encoded amount in WEI (e.g. `429903000000000000`), the smallest denomination of ether, ETH. You can use `fromWei` utils function to convert the balance to human-readable format.
+- The amount in balance array is an [RLP encoded](https://github.com/ethereum/wiki/wiki/RLP) amount in WEI (e.g. `429903000000000000`), the smallest denomination of ether, ETH. You can use `fromWei` utils function to convert the balance to human-readable format.
 - The `currency` in balance array contains either `0x0000000000000000000000000000000000000000` (states that this is ETH currency) or ERC20 smart contract address (e.g. `0xd74ef52053204c9887df4a0e921b1ae024f6fe31`).
 
 ```

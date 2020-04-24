@@ -11,6 +11,7 @@ module.exports = {
     balances: "./app/01-balances/balances.js",
     depositETH: "./app/02-deposit-eth/deposit-eth.js",
     depositERC20: "./app/03-deposit-erc20/deposit-erc20.js",
+    transactionETH: "./app/04-transaction-eth/transaction-eth.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
