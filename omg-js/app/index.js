@@ -1,9 +1,9 @@
 import { logBalances } from "./01-balances/balances";
 import { depositETH } from "./02-deposit-eth/deposit-eth";
-import { depositERC20 } from "./03-deposit-erc20/deposit-erc20";
-import { transactionETH } from "./04-transaction-eth/transaction-eth.js";
-import { transactionERC20 } from "./05-transaction-erc20/transaction-erc20.js";
-import { showUTXOs } from "./06-show-utxos/show-utxos.js";
+import { depositERC20 } from "./02-deposit-erc20/deposit-erc20";
+import { transactionETH } from "./03-transaction-eth/transaction-eth.js";
+import { transactionERC20 } from "./03-transaction-erc20/transaction-erc20.js";
+import { showUTXO } from "./04-utxo-show/utxo-show.js";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -41,7 +41,7 @@ const samples = [
   },
   {
     title: "06 - Show UTXOs",
-    script: showUTXOs,
+    script: showUTXO,
     code: "",
     readme: "",
   },
@@ -52,25 +52,31 @@ const samples = [
     readme: "",
   },
   {
-    title: "08 - Exit ETH Funds",
+    title: "08 - Split UTXOs",
     script: "",
     code: "",
     readme: "",
   },
   {
-    title: "09 - Exit ERC20 Funds",
+    title: "09 - Exit ETH Funds",
     script: "",
     code: "",
     readme: "",
   },
   {
-    title: "10 - Inflight Exit",
+    title: "10 - Exit ERC20 Funds",
     script: "",
     code: "",
     readme: "",
   },
   {
-    title: "11 - Processing Exit",
+    title: "12 - Inflight Exit",
+    script: "",
+    code: "",
+    readme: "",
+  },
+  {
+    title: "12 - Processing Exit",
     script: "",
     code: "",
     readme: "",

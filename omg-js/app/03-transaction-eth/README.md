@@ -271,6 +271,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `04 - Make an ETH Transfer` sample on the left side, observe the logs on the right.
+6. Select `Make an ETH Transfer` sample on the left side, observe the logs on the right.
 
 ![img](../assets/images/04.png)

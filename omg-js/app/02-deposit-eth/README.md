@@ -254,6 +254,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `02 - Make an ETH Deposit` sample on the left side, observe the logs on the right.
+6. Select `Make an ETH Deposit` sample on the left side, observe the logs on the right.
 
 ![img](../assets/images/02.png)

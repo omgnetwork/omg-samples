@@ -12,15 +12,16 @@ A Javascript application that allows interacting with `omg-js` library. Examples
 | `dist`                 | Build files that can be hosted on a server.                          |
 | `01-balances`          | Implementation for retrieving rootchain and childchain balances.     |
 | `02-deposit-eth`       | Implementation for depositing ETH to the OMG Network.                |
-| `03-deposit-erc20`     | Implementation for depositing ERC20 tokens to the OMG Network.       |
-| `04-transaction-eth`   | Implementation for making ETH transactions on the OMG Network.       |
-| `05-transaction-erc20` | Implementation for ERC-20 transactions on the OMG Network.           |
-| `06-merge-utxos`       | Implementation for merging UTXOs of a given account.                 |
-| `07-show-utxos`        | Implementation for showing UTXOs for a given account.                |
-| `08-exit-eth`          | Implementation for exiting of ETH from the OMG Network.              |
-| `09-exit-erc20`        | Implementation for exiting of ERC20 tokens from the OMG Network.     |
-| `10-inflight-exit-eth` | Implementation for in-fligh exits of ETH funds from the OMG Network. |
-| `11-process-exits`     | Implementation for processing exits on the OMG Network.              |
+| `02-deposit-erc20`     | Implementation for depositing ERC20 tokens to the OMG Network.       |
+| `03-transaction-eth`   | Implementation for making ETH transactions on the OMG Network.       |
+| `03-transaction-erc20` | Implementation for ERC-20 transactions on the OMG Network.           |
+| `04-utxos-merge`       | Implementation for merging UTXOs of a given account.                 |
+| `04-utxo-show`         | Implementation for showing UTXOs for a given account.                |
+| `04-utxo-split`        | Implementation for splitting UTXO for a given account.               |
+| `05-exit-eth`          | Implementation for exiting of ETH from the OMG Network.              |
+| `05-exit-erc20`        | Implementation for exiting of ERC20 tokens from the OMG Network.     |
+| `05-exit-inflight-eth` | Implementation for in-fligh exits of ETH funds from the OMG Network. |
+| `05-exit-process`      | Implementation for processing exits on the OMG Network.              |
 | `helpers`              | Scripts that help to run certain parts of code samples.              |
 | `assets`               | Project assets (images, css, fonts, etc).                            |
 | `index.js`             | Script that generates UI for the project.                            |

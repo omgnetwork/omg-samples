@@ -17,7 +17,7 @@ The example uses `getUtxos` function provided by the `Childchain` module of the 
 
 ### 1. App setup
 
-You can find the full Javascript segment of this tutorial in [show-utxos.js](./show-utxos.js). The first lines define dependent libraries, set up configs for child chain.
+You can find the full Javascript segment of this tutorial in [utxo-show.js](./utxo-show.js). The first lines define dependent libraries, set up configs for child chain.
 
 ```
 import { ChildChain } from "@omisego/omg-js";
@@ -206,6 +206,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `06 - Show UTXOs` sample on the left side, observe the logs on the right.
+6. Select `Show UTXOs` sample on the left side, observe the logs on the right.
 
 ![img](../assets/images/06.png)

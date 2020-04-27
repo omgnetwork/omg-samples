@@ -8,7 +8,7 @@ const childChain = new ChildChain({
   plasmaContractAddress: config.plasmaframework_contract_address,
 });
 
-async function showUTXOs() {
+async function showUTXO() {
   const aliceUtxos = await childChain.getUtxos(config.alice_eth_address);
   const bobUtxos = await childChain.getUtxos(config.bob_eth_address);
 
@@ -16,4 +16,4 @@ async function showUTXOs() {
   console.log(`Bob UTXOs: ${stringify(bobUtxos, undefined, 2)}`);
 }
 
-export {showUTXOs };
+export {showUTXO };
