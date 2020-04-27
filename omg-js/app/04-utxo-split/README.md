@@ -8,7 +8,7 @@ The example uses `createTransaction` function provided by the `Childchain` modul
 
 ## Prerequisites
 
-- At least one UTXO for Alice wallet. For creating a new UTXO, [make a Deposit](../deposit-eth/README.md).
+- At least one UTXO for Alice wallet. For creating a new UTXO, [make a Deposit](../02-deposit-eth/README.md).
 
 ## Steps
 

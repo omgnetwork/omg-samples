@@ -8,7 +8,7 @@ The example uses `createTransaction` function provided by the `Childchain` modul
 
 ## Prerequisites
 
-1. Any amount of ETH in Alice's OMG Network wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain test ETH. Otherwise, top it up with [Ropsten faucet](https://faucet.metamask.io/) (for testnet) or actual ETH (for mainnet).
+- Any amount of ETH in Alice's OMG Network wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain test ETH. Otherwise, top it up with [Ropsten faucet](https://faucet.metamask.io/) (for testnet) or actual ETH (for mainnet).
 
 ## Steps
 
@@ -48,7 +48,7 @@ const transferAmount = new BigNumber(
 
 ### 2. Logging child chain ETH balances for Alice and Bob
 
-Logging balances helps to see the changes in the wallets before and after making any transaction. To see a more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
+Logging balances helps to see the changes in the wallets before and after making any transaction. For more details, please refer to [Retrieve Balances](../01-balances/README.md) sample.
 
 ```
 async function logBalances() {
@@ -94,7 +94,7 @@ Bob's childchain ERC20 balance: 1.36000000000000001
 
 ### 3. Creating a payment transaction
 
-- The creation of a transaction starts with `createTransaction` function provided by the `Childchain` module of the `omg-js` library.
+The creation of a transaction starts with `createTransaction` function provided by the `Childchain` module of the `omg-js` library.
 
 ```
 const payments = [

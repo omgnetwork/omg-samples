@@ -8,7 +8,7 @@ The example uses a `deposit` function provided by the `omg-js` library to deposi
 
 ## Prerequisites
 
-1. Any amount of ETH in Alice's Web3 wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain test ETH. Otherwise, top it up with [Ropsten faucet](https://faucet.metamask.io/) (for testnet) or actual ETH (for mainnet).
+- Any amount of ETH in Alice's Web3 wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain test ETH. Otherwise, top it up with [Ropsten faucet](https://faucet.metamask.io/) (for testnet) or actual ETH (for mainnet).
 
 ## Steps
 
@@ -49,7 +49,7 @@ const depositAmount = new BigNumber(
 
 ### 2. Logging root chain and child chain ETH balances for Alice
 
-Logging balances helps to see the changes in the wallet addresses before and after depositing funds. To see a more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
+Logging balances helps to see the changes in the wallet addresses before and after depositing funds. For more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
 
 ```
 async function logBalances() {
@@ -83,7 +83,7 @@ Alice's child chain ETH balance: 0.606903 ETH
 
 ### 3. Depositing ETH from the root chain to the child chain
 
-- To perform any operation on the OMG Network, you need to have funds. Funds deposit happens when a user sends ETH or ERC20 tokens to the `Vault` smart contract on Ethereum Network. A vault holds custody of tokens transferred to the Plasma Framework. Deposits increase the pool of funds held by the contract and also signals to the child chain server that the funds should be accessible on the child chain.
+- Performing any operation on the OMG Network requires funds. Funds deposit happens when a user sends ETH or ERC20 tokens to the `Vault` smart contract on Ethereum Network. A vault holds custody of tokens transferred to the Plasma Framework. Deposits increase the pool of funds held by the contract and also signals to the child chain server that the funds should be accessible on the child chain.
 - A deposit generates a transaction receipt verifiable on Ethereum Network. A typical receipt has the following structure:
 
 ```
@@ -122,9 +122,9 @@ Alice's child chain ETH balance: 0.606903 ETH
 ```
 
 - A typical deposit uses `deposit` function provided by the `Rootchain` module of the `omg-js` library.
-- After the funds are confirmed on the rootchain, child chain server generates a transaction in a form of UTXO corresponding to the deposited amount. UTXO (unspent output) is a model used to keep a track of balances on the OMG Network.
-- If a transaction is successful, you will see a unique `transactionHash` that you can verify on Ethereum block explorer, such as [Etherscan](https://ropsten.etherscan.io/tx/0x0e7d060a63cb65f629cc6d053e71397c7fa3250b41e36cb2cae40b2acb4350a2). Copy the hash and paste in the search box to see details.
-- Depositing also involves forming a pseudo-block on the child chain. Such a block contains a single transaction with the deposited funds as a new UTXO. You can check a new block on the OMG Network's [block explorer](https://blockexplorer.ropsten.v1.omg.network).
+- After the funds are confirmed on the rootchain, child chain server generates a transaction in a form of UTXO corresponding to the deposited amount. UTXO (unspent transaction output) is a model used to keep a track of balances on the OMG Network.
+- If a transaction is successful, you will see a unique `transactionHash` that you can verify on Ethereum block explorer, such as [Etherscan](https://ropsten.etherscan.io/tx/0x0e7d060a63cb65f629cc6d053e71397c7fa3250b41e36cb2cae40b2acb4350a2). Copy the hash and paste it in the search box for transaction's details.
+- Depositing also involves forming a pseudo-block on the child chain. Such a block contains a single transaction with the deposited funds as a new UTXO. You can check a new block on [the OMG Block Explorer](https://blockexplorer.ropsten.v1.omg.network).
 
 ```
 console.log(

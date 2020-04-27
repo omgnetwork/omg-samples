@@ -8,7 +8,7 @@ The example uses `deposit` and `approveToken` functions provided by the `omg-js`
 
 ## Prerequisites
 
-1. Any amount of ERC20 tokens in Alice's wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain some test tokens. Otherwise, you can send 0 Ropsten ETH to several projects, most of them will send you back a few test tokens. To find smart contracts, you can use [Etherscan Token Tracker](https://etherscan.io/tokens).
+- Any amount of ERC20 tokens in Alice's wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain some test tokens. Otherwise, you can send 0 Ropsten ETH to several projects, most of them will send you back a few test tokens. For searching smart contracts` addresses, use [Etherscan Token Tracker](https://etherscan.io/tokens) tool.
 
 ## Steps
 
@@ -50,7 +50,7 @@ const depositAmount = new BigNumber(
 
 ### 2. Logging root chain and child chain ETH balances for Alice
 
-Logging balances helps to see the changes in the wallet addresses before and after depositing funds. To see a more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
+Logging balances helps to see the changes in the wallet before and after depositing funds. For more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
 
 ```
 async function logBalances() {
@@ -91,7 +91,7 @@ Alice's child chain ERC20 balance: 73.440000000000000008
 
 ### 3. Approving ERC20 token for deposit
 
-- Depositing ERC20 tokens requires approval of the corresponding `Vault` contract. You can deposit tokens only after this process is finished.
+Depositing ERC20 tokens requires approval of the corresponding `Vault` contract. You can deposit tokens only after this process is finished.
 
 ```
 console.log("Approving ERC20 for deposit...");
@@ -119,8 +119,8 @@ ERC20 approved: 0x19b0dd9327587e223c72d374db35cf641eb129f3ee5e2a5edb57f77c43d9ba
 
 - Each ERC20 token has a certain smart contract address. In this code sample you can observe a deposit of `EUR` token defined by `0xd74ef52053204c9887df4a0e921b1ae024f6fe31` smart contract.
 - A typical deposit uses the `deposit` function provided by the `Rootchain` module of the `omg-js` library.
-- If a transaction is successful, you will see a unique `transactionHash` that you can verify on Ethereum block explorer, such as [Etherescan](https://ropsten.etherscan.io/tx/0xbcb340775157d5f0d21ae8bd5b13d51b7dd62bf79737f8ceea1f46bf33ae4fbe). Copy the hash and paste in the search box to see details.
-- Depositing also involves forming a pseudo-block of the child chain. Such a block contains a single transaction with the deposited funds as a new UTXO. You can check a new block on [block explorer](https://blockexplorer.ropsten.v1.omg.network).
+- If a transaction is successful, you will see a unique `transactionHash` you can verify on Ethereum block explorer, such as [Etherescan](https://ropsten.etherscan.io/tx/0xbcb340775157d5f0d21ae8bd5b13d51b7dd62bf79737f8ceea1f46bf33ae4fbe). Copy the hash and paste it in the search box for transaction's details.
+- Depositing also involves forming a pseudo-block of the child chain. Such a block contains a single transaction with the deposited funds as a new UTXO. You can check a new block on [the OMG Block Explorer](https://blockexplorer.ropsten.v1.omg.network).
 
 ```
 console.log(
@@ -151,7 +151,7 @@ Deposit successful: 0xbcb340775157d5f0d21ae8bd5b13d51b7dd62bf79737f8ceea1f46bf33
 
 ### 5. Recording transaction by the Watcher
 
-- Watcher is a service that ensures the validity of all deposits, transfers and exits on the OMG Network. It is advisable to run your own Watcher if you have enough technical skills to set it up.
+- Watcher is a service that ensures the validity of all deposits, transfers and exits on the OMG Network. It is advisable to run your own Watcher if you have enough technical expertise to set it up.
 - The current sample shows that `1.9 ERC20 tokens` were sent to the root chain smart contract: the original amount was `25.199999999999999982`, the amount after is `23.299999999999999982`.
 - You will have to wait for some time until the transaction confirms on the OMG Network. The current number of required confirmations is 20. At the end of this period, you will see the updated ERC20 balance of Alice's address on the child chain: the original amount was `73.440000000000000008`, the amount after is `75.340000000000000008`.
 

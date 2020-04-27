@@ -8,7 +8,7 @@ The example uses `getUtxos` function provided by the `Childchain` module of the 
 
 ## Prerequisites
 
-1. Any number of UTXOs for Alice and Bob wallets.
+- Any number of UTXOs for Alice and Bob wallets.
 
 ## Steps
 
@@ -36,7 +36,7 @@ const bobAddress = config.bob_eth_address;
 
 ### 2. Logging ETH and ERC20 UTXOs for Alice
 
-- Logging UTXOs helps to understand how many funds can be withdrawn to the root chain. To perform this operation, use `getUtxos` function by the `Childchain` module provided by the `omg-js` library.
+- Logging UTXOs helps to understand how many funds can be withdrawn to the root chain. For performing this operation, use `getUtxos` function by the `Childchain` module provided by the `omg-js` library.
 - By default, `getUtxos` function returns all UTXOs owned by the address you set as an argument. You may want to filter them by the currency (for working only with ETH UTXOs), or by the ERC20 smart contract address (for working with ERC20 tokens) respectively.
 
 ```

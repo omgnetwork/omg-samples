@@ -8,7 +8,7 @@ The example uses `createTransaction` function provided by the `Childchain` modul
 
 ## Prerequisites
 
-1. Any amount of ETH in Alice's OMG Network wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain test ETH. Otherwise, top it up with [Ropsten faucet](https://faucet.metamask.io/) (for testnet) or actual ETH (for mainnet).
+- Any amount of ETH in Alice's OMG Network wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain test ETH. Otherwise, top it up with [Ropsten faucet](https://faucet.metamask.io/) (for testnet) or actual ETH (for mainnet).
 
 ## Steps
 
@@ -45,7 +45,7 @@ const bobAddress = config.bob_eth_address;
 
 ### 2. Logging child chain ETH balances for Alice and Bob
 
-Logging balances helps to see the changes in the wallets before and after making any transaction. To see a more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
+Logging balances helps to see the changes in the wallets before and after making any transaction. For more details, please refer to [Retrieve Balances](../01-balances/README.md) sample.
 
 ```
 async function logBalances() {
@@ -82,13 +82,12 @@ Bob's child chain ETH balance: 0.03319 ETH
 
 ### 3. Creating a payment transaction
 
-- Each transaction has its type and transaction output type allowing to define its own rules about how funds may be spent. For example, it is possible to limit withdrawal to prevent the venue from spending clients` funds or mark transactions that were used during the trading session for more clear audit purposes.
+- Transactions are composed of inputs and outputs. An input is simply a pointer to the output of another transaction. An output is a transaction that hasn't been spent yet (also known as UTXO).
 - The creation of a transaction starts with `createTransaction` function provided by the `Childchain` module of the `omg-js` library.
 - Each transaction contains details of the sender and receiver in the `owner` property for a respective object in the form of a public key.
 - The amount is defined in [RLP encoded](https://github.com/ethereum/wiki/wiki/RLP) format, as for any type of transaction on the network.
 - Currency contains `0x0000000000000000000000000000000000000000` value for ETH operations, and the respective smart contract address for ERC20 tokens.
 - The child chain server collects fees for sending a transaction. The fee can be paid in a variety of supported tokens by the network. To get more details on how the fees are defined, please refer to [Fees Documentation](https://docs.omg.network/fees). If you want to know the list of supported tokens to pay fees, you can use the `getFees` function of the `Childchain` module provided by the `omg-js` library.
-- Transactions are composed of inputs and outputs. An input is simply a pointer to the output of another transaction. An output is a transaction that hasn't been spent yet (also known as UTXO).
 
 ```
 const transferAmount = new BigNumber(
@@ -152,6 +151,7 @@ metadata ::= bytes32
 ```
 
 - Transactions are signed using the [EIP-712](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md) method. The EIP-712 typed data structure is defined as follows:
+
 ```
 {
   types: {
