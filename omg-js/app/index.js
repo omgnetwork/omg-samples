@@ -5,6 +5,7 @@ import { transactionEth } from "./03-transaction-eth/transaction-eth.js";
 import { transactionErc20 } from "./03-transaction-erc20/transaction-erc20.js";
 import { showUtxo } from "./04-utxo-show/utxo-show.js";
 import { mergeUtxo } from "./04-utxo-merge/utxo-merge.js";
+import { splitUtxo } from "./04-utxo-split/utxo-split.js";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -54,7 +55,7 @@ const samples = [
   },
   {
     title: "08 - Split UTXOs",
-    script: "",
+    script: splitUtxo,
     code: "",
     readme: "",
   },

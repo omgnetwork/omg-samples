@@ -14,7 +14,8 @@ module.exports = {
     transactionEth: "./app/03-transaction-eth/transaction-eth.js",
     transactionErc20: "./app/03-transaction-erc20/transaction-erc20.js",
     showUtxo: "./app/04-utxo-show/utxo-show.js",
-    mergeUtxoEth: "./app/04-utxo-merge/utxo-merge.js",
+    mergeUtxo: "./app/04-utxo-merge/utxo-merge.js",
+    splitUtxo: "./app/04-utxo-split/utxo-split.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
