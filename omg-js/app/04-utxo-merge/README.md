@@ -34,7 +34,7 @@ const childChain = new ChildChain({
 
 ```
 
-### 2. Loggins UTXOs for Alice
+### 2. Logging UTXOs for Alice
 
 Logging UTXOs helps to understand how many funds can be merged. To perform this operation, use `getUtxos` function by the `Childchain` module provided by the `omg-js` library.
 
@@ -139,7 +139,7 @@ Alice ERC20 UTXOs: [
 - Due to technical architecture, Standard Exits can't be exited with multiple UTXOs. Instead, you have to submit each UTXO separately. Because a wallet may have several UTXOs, a user may choose to merge them first and only then submit a single exit. This saves a significant amount of time.
 - You may also consider using UTXO merging if you need to send a certain amount of funds that are split into more than 4 UTXOs.
 - The minimum number of UTXOs to merge is 2, the maximum — 4.
-- The sample demonstrates how to merge ETH UTXOs. If you want to merge ERC20 UTXOs, simply change an array that will be used for merging from `aliceEthUtxos` to `aliceErc20Utxos`. For example:
+- The sample demonstrates how to merge ETH UTXOs. If you want to merge ERC20 UTXOs, change an array that will be used for merging from `aliceEthUtxos` to `aliceErc20Utxos`. For example:
 
 ```
 const utxosToMerge = aliceErc20Utxos.slice(0, 4);
@@ -149,6 +149,40 @@ const utxo = await childChain.mergeUtxos({
    verifyingContract: config.plasmaframework_contract_address,
 });
 ``` 
+
+```
+if (aliceUtxosAll.length > 1) {
+  console.log("Merging ERC20 UTXOs");
+  const utxosToMerge = aliceEthUtxos.slice(0, 4);
+  const utxo = await childChain.mergeUtxos({
+    utxos: utxosToMerge,
+    privateKey: alicePrivateKey,
+    verifyingContract: config.plasmaframework_contract_address,
+  });
+
+  console.log(
+    "Merge UTXO transaction result: " + JSON.stringify(utxo, undefined, 2)
+  );
+  await wait.waitForUtxo(childChain, aliceAddress, {
+    ...utxo,
+    oindex: 0,
+  });
+
+  const newAliceUtxos = await childChain.getUtxos(aliceAddress);
+  console.log(
+    `Merged Alice UTXOs: ${JSONBigNumber.stringify(
+      newAliceUtxos,
+      undefined,
+      2
+    )}`
+  );
+  console.log(`Alice UTXOs has length of ${newAliceUtxos.length}`);
+} else {
+  console.log(
+    "You have less than two UTXOs. The minimum number to merge is 2. Make a deposit and get back."
+  );
+}
+```
 
 Example output:
 
