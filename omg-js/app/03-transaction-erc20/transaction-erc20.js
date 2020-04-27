@@ -52,7 +52,7 @@ async function logBalances() {
   return { bobERC20Balance: bobsChildchainERC20Balance };
 }
 
-async function transactionERC20() {
+async function transactionErc20() {
   if (!config.erc20_contract_address) {
     console.log("Please define an ERC20 contract address in your .env");
     return;
@@ -109,4 +109,4 @@ async function transactionERC20() {
   await logBalances();
 }
 
-export { transactionERC20 };
+export { transactionErc20 };

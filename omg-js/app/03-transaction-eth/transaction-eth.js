@@ -39,7 +39,7 @@ async function logBalances() {
   return { bobETHBalance: bobsEthObject ? bobsEthObject.amount : 0 };
 }
 
-async function transactionETH() {
+async function transactionEth() {
   const { bobETHBalance } = await logBalances();
   console.log("-----");
 
@@ -99,4 +99,4 @@ async function transactionETH() {
   await logBalances();
 }
 
-export { transactionETH };
+export { transactionEth };

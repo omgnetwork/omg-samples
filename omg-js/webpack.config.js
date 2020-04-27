@@ -9,11 +9,12 @@ module.exports = {
   entry: {
     app: "./app/index.js",
     balances: "./app/01-balances/balances.js",
-    depositETH: "./app/02-deposit-eth/deposit-eth.js",
-    depositERC20: "./app/02-deposit-erc20/deposit-erc20.js",
-    transactionETH: "./app/03-transaction-eth/transaction-eth.js",
-    transactionERC20: "./app/03-transaction-erc20/transaction-erc20.js",
-    showUTXO: "./app/04-utxo-show/utxo-show.js",
+    depositEth: "./app/02-deposit-eth/deposit-eth.js",
+    depositErc20: "./app/02-deposit-erc20/deposit-erc20.js",
+    transactionEth: "./app/03-transaction-eth/transaction-eth.js",
+    transactionErc20: "./app/03-transaction-erc20/transaction-erc20.js",
+    showUtxo: "./app/04-utxo-show/utxo-show.js",
+    mergeUtxoEth: "./app/04-utxo-merge/utxo-merge.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

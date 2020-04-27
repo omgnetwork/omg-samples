@@ -49,7 +49,7 @@ async function logBalances() {
   );
 }
 
-async function depositERC20() {
+async function depositErc20() {
   if (!config.erc20_contract_address) {
     console.log("Please define an ERC20 contract address in your .env");
     return;
@@ -85,7 +85,9 @@ async function depositERC20() {
       gas: 6000000,
     },
   });
-  console.log("Deposit successful: " + String(transactionReceipt.transactionHash));
+  console.log(
+    "Deposit successful: " + String(transactionReceipt.transactionHash)
+  );
 
   console.log("Waiting for a transaction to be recorded by the watcher...");
   await OmgUtil.waitForRootchainTransaction({
@@ -102,8 +104,4 @@ async function depositERC20() {
   await logBalances();
 }
 
-export { depositERC20 };
-
-
-
-
+export { depositErc20 };

@@ -1,9 +1,10 @@
 import { logBalances } from "./01-balances/balances";
-import { depositETH } from "./02-deposit-eth/deposit-eth";
-import { depositERC20 } from "./02-deposit-erc20/deposit-erc20";
-import { transactionETH } from "./03-transaction-eth/transaction-eth.js";
-import { transactionERC20 } from "./03-transaction-erc20/transaction-erc20.js";
-import { showUTXO } from "./04-utxo-show/utxo-show.js";
+import { depositEth } from "./02-deposit-eth/deposit-eth";
+import { depositErc20 } from "./02-deposit-erc20/deposit-erc20";
+import { transactionEth } from "./03-transaction-eth/transaction-eth.js";
+import { transactionErc20 } from "./03-transaction-erc20/transaction-erc20.js";
+import { showUtxo } from "./04-utxo-show/utxo-show.js";
+import { mergeUtxo } from "./04-utxo-merge/utxo-merge.js";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -17,37 +18,37 @@ const samples = [
   },
   {
     title: "02 - Make an ETH Deposit",
-    script: depositETH,
+    script: depositEth,
     code: "",
     readme: "",
   },
   {
     title: "03 - Make an ERC20 Deposit",
-    script: depositERC20,
+    script: depositErc20,
     code: "",
     readme: "",
   },
   {
     title: "04 - Make an ETH Transfer",
-    script: transactionETH,
+    script: transactionEth,
     code: "",
     readme: "",
   },
   {
     title: "05 - Make an ERC20 Transfer",
-    script: transactionERC20,
+    script: transactionErc20,
     code: "",
     readme: "",
   },
   {
     title: "06 - Show UTXOs",
-    script: showUTXO,
+    script: showUtxo,
     code: "",
     readme: "",
   },
   {
     title: "07 - Merge UTXOs",
-    script: "",
+    script: mergeUtxo,
     code: "",
     readme: "",
   },
@@ -70,7 +71,7 @@ const samples = [
     readme: "",
   },
   {
-    title: "12 - Inflight Exit",
+    title: "11 - Inflight Exit",
     script: "",
     code: "",
     readme: "",

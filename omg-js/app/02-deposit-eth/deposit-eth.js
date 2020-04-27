@@ -41,7 +41,7 @@ async function logBalances() {
   console.log(`Alice's child chain ETH balance: ${childchainETHBalance}`);
 }
 
-async function depositETH() {
+async function depositEth() {
   await logBalances();
   console.log("-----");
 
@@ -59,7 +59,9 @@ async function depositETH() {
       gas: 6000000,
     },
   });
-  console.log("Deposit successful: " + String(transactionReceipt.transactionHash));
+  console.log(
+    "Deposit successful: " + String(transactionReceipt.transactionHash)
+  );
 
   console.log("Waiting for a transaction to be recorded by the watcher...");
   await OmgUtil.waitForRootchainTransaction({
@@ -76,4 +78,4 @@ async function depositETH() {
   await logBalances();
 }
 
-export { depositETH };
+export { depositEth };
