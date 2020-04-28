@@ -17,6 +17,7 @@ module.exports = {
     mergeUtxo: "./app/04-utxo-merge/utxo-merge.js",
     splitUtxo: "./app/04-utxo-split/utxo-split.js",
     exitEth: "./app/05-exit-standard-eth/exit-standard-eth.js",
+    exitErc20: "./app/05-exit-standard-erc20/exit-standard-erc20.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

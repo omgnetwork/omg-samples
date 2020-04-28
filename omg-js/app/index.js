@@ -7,6 +7,7 @@ import { showUtxo } from "./04-utxo-show/utxo-show.js";
 import { mergeUtxo } from "./04-utxo-merge/utxo-merge.js";
 import { splitUtxo } from "./04-utxo-split/utxo-split.js";
 import { exitEth } from "./05-exit-standard-eth/exit-standard-eth.js";
+import { exitErc20 } from "./05-exit-standard-erc20/exit-standard-erc20.js";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -68,7 +69,7 @@ const samples = [
   },
   {
     title: "10 - Start a Standard ERC20 Exit",
-    script: "",
+    script: exitErc20,
     code: "",
     readme: "",
   },
