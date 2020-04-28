@@ -6,6 +6,7 @@ import { transactionErc20 } from "./03-transaction-erc20/transaction-erc20.js";
 import { showUtxo } from "./04-utxo-show/utxo-show.js";
 import { mergeUtxo } from "./04-utxo-merge/utxo-merge.js";
 import { splitUtxo } from "./04-utxo-split/utxo-split.js";
+import { exitEth } from "./05-exit-standard-eth/exit-standard-eth.js";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -60,25 +61,25 @@ const samples = [
     readme: "",
   },
   {
-    title: "09 - Exit ETH Funds",
+    title: "09 - Start a Standard ETH Exit ",
+    script: exitEth,
+    code: "",
+    readme: "",
+  },
+  {
+    title: "10 - Start a Standard ERC20 Exit",
     script: "",
     code: "",
     readme: "",
   },
   {
-    title: "10 - Exit ERC20 Funds",
+    title: "11 - Start an Inflight Exit",
     script: "",
     code: "",
     readme: "",
   },
   {
-    title: "11 - Inflight Exit",
-    script: "",
-    code: "",
-    readme: "",
-  },
-  {
-    title: "12 - Processing Exit",
+    title: "12 - Process an Exit",
     script: "",
     code: "",
     readme: "",

@@ -16,6 +16,7 @@ module.exports = {
     showUtxo: "./app/04-utxo-show/utxo-show.js",
     mergeUtxo: "./app/04-utxo-merge/utxo-merge.js",
     splitUtxo: "./app/04-utxo-split/utxo-split.js",
+    exitEth: "./app/05-exit-standard-eth/exit-standard-eth.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -38,7 +39,7 @@ module.exports = {
       defaults: false,
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css"
+      filename: "[name].css",
     }),
   ],
   // Windows only
