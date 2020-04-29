@@ -8,6 +8,7 @@ import { mergeUtxo } from "./04-utxo-merge/utxo-merge.js";
 import { splitUtxo } from "./04-utxo-split/utxo-split.js";
 import { exitEth } from "./05-exit-standard-eth/exit-standard-eth.js";
 import { exitErc20 } from "./05-exit-standard-erc20/exit-standard-erc20.js";
+import {exitInflightEth} from "./05-exit-inflight-eth/exit-inflight-eth.js";
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -74,8 +75,8 @@ const samples = [
     readme: "",
   },
   {
-    title: "11 - Start an Inflight Exit",
-    script: "",
+    title: "11 - Start an ETH Inflight Exit",
+    script: exitInflightEth,
     code: "",
     readme: "",
   },
