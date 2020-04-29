@@ -8,7 +8,7 @@ The example uses `startStandardExit` and `getStandardExitId` functions provided 
 
 ## Prerequisites
 
-- At least 1 ERC20 UTXO in Bob’s wallet. For creating a new UTXO, you can [make a deposit](../02-deposit-erc20/README.md) or [receive a transaction](../03-transaction-erc20/README.md) from another address.
+- At least 1 ERC20 UTXO in in Bob's OMG Network wallet. For creating a new UTXO, you can [make a deposit](../02-deposit-erc20/README.md), [receive a transaction](../03-transaction-erc20/README.md), or [split an existing UTXO](../04-utxo-split/README.md).
 
 ## Steps
 
@@ -106,7 +106,7 @@ Bob's root chain ERC20 balance: 0
 Bob's child chain ERC20 balance: 5.46
 ```
 
-### 3. Logging ETH UTXOs for Bob
+### 3. Logging ERC20 UTXOs for Bob
 
 - Logging UTXOs helps to understand how many UTXOs you have available to submit an exit. For a more detailed example, please refer to [Show UTXOs](../04-utxo-show/README.md) sample.
 - You can exit only 1 UTXO at a time. Consider [merging multiple UTXOs](../04-utxo-merge/README.md) into 1 UTXO or [splitting UTXO](../04-utxo-split/README.md) if you don't want to exit all of your funds at once with a single UTXO.
@@ -176,7 +176,8 @@ Adding a 0xd74ef52053204c9887df4a0e921b1ae024f6fe31 exit queue
 
 - For starting a standard exit, use `startStandardExit` function provided by the `Rootchain` module of the `omg-js` library.
 - A standard exit creates an exit receipt. Each exit has an id that identifies it. You can retrive the id using `getStandardExitId` function provided by the `Rootchain` module of the `omg-js` library.
-- After a standard exit starts, you'll have to wait a certain amount of time before you can process that exit and receive your funds back on Ethereum Network. This time is called a challenge period and equals to two `minExitPeriod` (2 weeks) on the mainnet and 1 day on the Ropsten testnet. The amount of time needed on the testnet can be altered in the future based on clients' requests. Therefore, a challenge period is an incentivized security measure that allows other users to challenge anybody's exits for validity and honesty. You can learn more about challenging exits in [the OMG Developer Portal](https://docs.omg.network/challenging-exits).
+- Make sure to save the exit id value, you will need it in the future to finish processing an exit.
+- After an standard exit starts, you'll have to wait a certain amount of time before you can process that exit and receive your funds back on Ethereum Network. This time is called a challenge period and equals to two `minExitPeriod` (2 weeks) on the mainnet and 1 day on the Ropsten testnet (see Exit Period in [Network Connection](https://docs.omg.network/network-connection-details) for the latest info). The amount of time needed on the testnet can be altered in the future based on clients' requests. Therefore, a challenge period is an incentivized security measure that allows other users to challenge anybody's exits for validity and honesty. You can learn more about challenging exits in [the OMG Developer Portal](https://docs.omg.network/challenging-exits).
 - For checking the amount of time your exit will be available for processing, use `getExitTime` provided by the `Rootchain` module of the `omg-js` library. The time is returned in milliseconds. Feel free to convert it to a move convenient way.
 
 ```
@@ -247,4 +248,4 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `19 - Start a Standard ERC20 Exit` sample on the left side, observe the logs on the right.
+6. Select `Start a Standard ERC20 Exit` sample on the left side, observe the logs on the right.

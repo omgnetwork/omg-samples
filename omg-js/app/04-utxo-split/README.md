@@ -8,7 +8,7 @@ The example uses `createTransaction` function provided by the `Childchain` modul
 
 ## Prerequisites
 
-- At least one UTXO for Alice wallet. For creating a new UTXO, [make a Deposit](../02-deposit-eth/README.md).
+- At least one UTXO in Alice's OMG Network wallet. For creating a new UTXO, you can [make a deposit](../02-deposit-eth/README.md) or [receive a transaction](../03-transaction-eth/README.md).
 
 ## Steps
 
@@ -20,7 +20,7 @@ The example uses `createTransaction` function provided by the `Childchain` modul
 
 ### 1. App setup
 
-You can find the full Javascript segment of this tutorial in [utxo-split.js](./utxo-split.js). The first lines define dependent libraries, set up configs for child chain and wallets` data to be used during the sample.
+You can find the full Javascript segment of this tutorial in [utxo-split.js](./utxo-split.js). The first lines define dependent libraries, set up configs for child chain and wallet's data to be used during the sample.
 
 ```
 import BigNumber from "bn.js";
@@ -271,5 +271,3 @@ npm run start
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
 6. Select `Make an ETH Transfer` sample on the left side, observe the logs on the right.
-
-![img](../assets/images/07.png)

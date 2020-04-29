@@ -8,7 +8,7 @@ The example uses the `mergeUtxos` function provided by the `Childchain` module o
 
 ## Prerequisites
 
-- At least 2 UTXOs (ETH or ERC20) for Alice wallet. For creating a new UTXO, you can [make a new Deposit](../deposit-eth/README.md), or [split an existing UTXO](../08-utxo-split-eth/README.md).
+- At least 2 UTXOs (ETH or ERC20) in Alice's OMG Network wallet. For creating a new UTXO, you can [make a deposit](../02-deposit-eth/README.md), [receive a transaction](../03-transaction-eth/README.md), or [split an existing UTXO](../04-utxo-split/README.md).
 
 ## Steps
 
@@ -257,6 +257,4 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `07 - Merge UTXOs` sample on the left side, observe the logs on the right.
-
-![img](../assets/images/07.png)
+6. Select `Merge UTXOs` sample on the left side, observe the logs on the right.

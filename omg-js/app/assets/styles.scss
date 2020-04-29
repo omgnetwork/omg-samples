@@ -298,6 +298,7 @@ h2 {
   padding: 40px;
   background-color: #1f1e23;
   max-width: 300px;
+  overflow: auto;
   flex: 1;
   font-size: 14px;
   @include mobile {

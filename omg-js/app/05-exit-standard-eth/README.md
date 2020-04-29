@@ -8,7 +8,7 @@ The example uses the `startStandardExit`, `getStandardExitId` functions provided
 
 ## Prerequisites
 
-- At least 1 ETH UTXO in Bob’s wallet. For creating a new UTXO, you can make a Deposit or receive a transaction from another address.
+- At least 1 ETH UTXO in in Bob's OMG Network wallet. For creating a new UTXO, you can [make a deposit](../02-deposit-eth/README.md), [receive a transaction](../03-transaction-eth/README.md), or [split an existing UTXO](../04-utxo-split/README.md).
 
 ## Steps
 
@@ -25,7 +25,6 @@ You can find the full Javascript segment of this tutorial in [exit-standard-eth.
 ```
 import Web3 from "web3";
 import { ChildChain, RootChain, OmgUtil } from "@omisego/omg-js";
-import wait from "../helpers/wait.js";
 import config from "../../config.js";
 
 const web3 = new Web3(new Web3.providers.HttpProvider(config.eth_node), null, {
@@ -196,7 +195,8 @@ if (!hasToken) {
 ```
 
 - Each exit has an Id that identifies it. You can retrive the id using `getStandardExitId` function provided by the `Rootchain` module of the `omg-js` library.
-- After a standard exit has started, you'll have to wait a certain amount of time before you can process that exit and receive your funds back on Ethereum Network. This time is called a challenge period and equals to two `minExitPeriod` (2 weeks) on the mainnet and 1 day on the Ropsten testnet. The amount of time needed on the testnet can be altered in the future based on clients' requests. Therefore, a challenge period is an incentivized security measure that allows other users to challenge anybody's exits for validity and honesty. You can learn more about challenging exits in [the OMG Developer Portal](https://docs.omg.network/challenging-exits).
+- Make sure to save the exit id value, you will need it in the future to finish processing an exit.
+- After an standard exit starts, you'll have to wait a certain amount of time before you can process that exit and receive your funds back on Ethereum Network. This time is called a challenge period and equals to two `minExitPeriod` (2 weeks) on the mainnet and 1 day on the Ropsten testnet (see Exit Period in [Network Connection](https://docs.omg.network/network-connection-details) for the latest info). The amount of time needed on the testnet can be altered in the future based on clients' requests. Therefore, a challenge period is an incentivized security measure that allows other users to challenge anybody's exits for validity and honesty. You can learn more about challenging exits in [the OMG Developer Portal](https://docs.omg.network/challenging-exits).
 - For checking the amount of time your exit will available for processing, use `getExitTime` provided by the `Rootchain` module of the `omg-js` library. The time is returned in milliseconds. Feel free to convert it to a move convenient way.
 
 ```
@@ -266,4 +266,4 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `09 - Start a Standard ETH Exit` sample on the left side, observe the logs on the right.
+6. Select `Start a Standard ETH Exit` sample on the left side, observe the logs on the right.

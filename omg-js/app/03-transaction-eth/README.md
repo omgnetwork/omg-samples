@@ -20,7 +20,7 @@ The example uses `createTransaction` function provided by the `Childchain` modul
 
 ### 1. App setup
 
-You can find the full Javascript segment of this tutorial in [transaction-eth.js](./transaction-eth.js). The first lines define dependent libraries, set up configs for child chain and root chain, define wallets` data to be used during the sample.
+You can find the full Javascript segment of this tutorial in [transaction-eth.js](./transaction-eth.js). The first lines define dependent libraries, set up configs for child chain and root chain, define wallet's data to be used during the sample.
 
 ```
 import BigNumber from "bn.js";
@@ -45,7 +45,7 @@ const bobAddress = config.bob_eth_address;
 
 ### 2. Logging child chain ETH balances for Alice and Bob
 
-Logging balances helps to see the changes in the wallets before and after making any transaction. For more details, please refer to [Retrieve Balances](../01-balances/README.md) sample.
+Logging balances helps to see the changes in the wallets before and after making any transaction. For more detailed example, please refer to [Retrieve Balances](../01-balances/README.md).
 
 ```
 async function logBalances() {
@@ -271,6 +271,4 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `Make an ETH Transfer` sample on the left side, observe the logs on the right.
-
-![img](../assets/images/04.png)
+6. Select `Make an ETH Transaction` sample on the left side, observe the logs on the right.

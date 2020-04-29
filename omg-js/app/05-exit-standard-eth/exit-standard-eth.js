@@ -1,6 +1,5 @@
 import Web3 from "web3";
 import { ChildChain, RootChain, OmgUtil } from "@omisego/omg-js";
-import wait from "../helpers/wait.js";
 import config from "../../config.js";
 
 const web3 = new Web3(new Web3.providers.HttpProvider(config.eth_node), null, {

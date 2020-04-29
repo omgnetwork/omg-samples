@@ -4,11 +4,11 @@ _By the end of this tutorial you should know how to deposit ERC20 tokens to the 
 
 ## Intro
 
-The example uses `deposit` and `approveToken` functions provided by the `omg-js` library to deposit ERC20 tokens to the root chain smart contract and subsequently to the child chain. The overall process for depositing ERC20 tokens is similar to depositing ETH. If you need more details on certain steps, please refer to [Make an ETH Deposit](../02-deposit-eth/README.md) sample.
+The example uses `deposit` and `approveToken` functions provided by the `omg-js` library to deposit ERC20 tokens to the root chain smart contract and subsequently to the child chain. The overall process for depositing ERC20 tokens is similar to depositing ETH. If you need more detailed sample, please refer to [Make an ETH Deposit](../02-deposit-eth/README.md).
 
 ## Prerequisites
 
-- Any amount of ERC20 tokens in Alice's wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain some test tokens. Otherwise, you can send 0 Ropsten ETH to several projects, most of them will send you back a few test tokens. For searching smart contracts` addresses, use [Etherscan Token Tracker](https://etherscan.io/tokens) tool.
+- Any amount of ERC20 tokens in Alice's Web3 wallet. If you're using pre-defined `.env` configurations for Alice and Bob, the wallet should contain some test tokens. Otherwise, you can send 0 Ropsten ETH to several projects, most of them will send you back a few test tokens. For searching smart contracts` addresses, use [Etherscan Token Tracker](https://etherscan.io/tokens) tool.
 
 ## Steps
 
@@ -20,7 +20,7 @@ The example uses `deposit` and `approveToken` functions provided by the `omg-js`
 
 ### 1. App setup
 
-You can find the full Javascript segment of this tutorial in [deposit-erc20.js](./deposit-erc20.js). The first lines define dependent libraries, set up configs for child chain and root chain, define wallets` data to be used during the sample.
+You can find the full Javascript segment of this tutorial in [deposit-erc20.js](./deposit-erc20.js). The first lines define dependent libraries, set up configs for child chain and root chain, define wallet's data to be used during the sample.
 
 ```
 import BigNumber from "bn.js";
@@ -250,5 +250,3 @@ npm run start
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
 6. Select `Make an ERC20 Deposit` sample on the left side, observe the logs on the right.
-
-![img](../assets/images/03.png)

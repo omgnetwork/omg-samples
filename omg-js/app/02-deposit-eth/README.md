@@ -19,7 +19,7 @@ The example uses a `deposit` function provided by the `omg-js` library to deposi
 
 ### 1. App setup
 
-You can find the full Javascript segment of this tutorial in [deposit-eth.js](./deposit-eth.js) file. The first lines define dependent libraries, set up configs for child chain and root chain, define wallets` data to be used during the sample.
+You can find the full Javascript segment of this tutorial in [deposit-eth.js](./deposit-eth.js) file. The first lines define dependent libraries, set up configs for child chain and root chain, define wallet's data to be used during the sample.
 
 ```
 import BigNumber from "bn.js";
@@ -255,5 +255,3 @@ npm run start
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
 6. Select `Make an ETH Deposit` sample on the left side, observe the logs on the right.
-
-![img](../assets/images/02.png)

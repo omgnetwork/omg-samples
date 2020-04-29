@@ -8,7 +8,7 @@ The example uses `getUtxos` function provided by the `Childchain` module of the 
 
 ## Prerequisites
 
-- Any number of UTXOs for Alice and Bob wallets.
+- Any number of UTXOs in Alice's and Bob's OMG Network wallets. For creating a new UTXO, you can [make a deposit](../02-deposit-eth/README.md), [receive a transaction](../03-transaction-eth/README.md), or [split an existing UTXO](../04-utxo-split/README.md).
 
 ## Steps
 
@@ -261,5 +261,3 @@ npm run start
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
 6. Select `Show UTXOs` sample on the left side, observe the logs on the right.
-
-![img](../assets/images/06.png)

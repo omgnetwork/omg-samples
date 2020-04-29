@@ -13,14 +13,14 @@ The example uses `createTransaction` function provided by the `Childchain` modul
 ## Steps
 
 1. App setup
-2. Logging child chain ETH balances for Alice and Bob
+2. Logging child chain ERC20 balances for Alice and Bob
 3. Creating a payment transaction
 4. Signing, building and submitting a transaction
 5. Recording transaction by the Watcher
 
 ### 1. App setup
 
-You can find the full Javascript segment of this tutorial in [transaction-erc20.js](./transaction-erc20.js). The first lines define dependent libraries, set up configs for child chain and root chain, define wallets` data to be used during the sample.
+You can find the full Javascript segment of this tutorial in [transaction-erc20.js](./transaction-erc20.js). The first lines define dependent libraries, set up configs for child chain and root chain, define wallet's data to be used during the sample.
 
 ```
 import { ChildChain, OmgUtil } from "@omisego/omg-js";
@@ -46,9 +46,9 @@ const transferAmount = new BigNumber(
 );
 ```
 
-### 2. Logging child chain ETH balances for Alice and Bob
+### 2. Logging child chain ERC20 balances for Alice and Bob
 
-Logging balances helps to see the changes in the wallets before and after making any transaction. For more details, please refer to [Retrieve Balances](../01-balances/README.md) sample.
+Logging balances helps to see the changes in the wallets before and after making any transaction. For more detailed example, please refer to [Retrieve Balances](../01-balances/README.md).
 
 ```
 async function logBalances() {
@@ -207,6 +207,4 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `Make an ERC20 Transfer` sample on the left side, observe the logs on the right.
-
-![img](../assets/images/05.png)
+6. Select `Make an ERC20 Transaction` sample on the left side, observe the logs on the right.

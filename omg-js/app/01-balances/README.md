@@ -34,7 +34,9 @@ const childChain = new ChildChain({
 ```
 
 ### 2. Logging child chain balances for Alice
+
 - `getBalance` function returns an array of balances that contain BigNum objects ([BN.js](https://github.com/indutny/bn.js)). It helps to calculate big numbers in Javascript. A typical array has the following structure:
+
 ```
 [
   {
@@ -42,7 +44,8 @@ const childChain = new ChildChain({
     "currency": "0x0000000000000000000000000000000000000000"
   }
 ]
-``` 
+```
+
 - The amount in balance array is an [RLP encoded](https://github.com/ethereum/wiki/wiki/RLP) amount in WEI (e.g. `429903000000000000`), the smallest denomination of ether, ETH. You can use `fromWei` utils function to convert the balance to human-readable format.
 - The `currency` in balance array contains either `0x0000000000000000000000000000000000000000` (states that this is ETH currency) or ERC20 smart contract address (e.g. `0xd74ef52053204c9887df4a0e921b1ae024f6fe31`).
 
@@ -64,8 +67,9 @@ console.log(
   )}`
 );
 ```
-  
+
 Example output:
+
 ```
 Alice's child chain balance: [
   {
@@ -78,6 +82,7 @@ Alice's child chain balance: [
   }
 ]
 ```
+
 ### 3. Logging root chain balances for Alice
 
 ```
@@ -113,6 +118,7 @@ console.log(
 ```
 
 Example output:
+
 ```
 Alice's root chain balance: [
   {
@@ -126,7 +132,8 @@ Alice's root chain balance: [
 ]
 ```
 
-### 4. Logging child chain balances for Bob 
+### 4. Logging child chain balances for Bob
+
 ```
 // child chain balances for Bob
 const bobsBalanceArray = await childChain.getBalance(bobAddress);
@@ -141,7 +148,9 @@ console.log(
   `Bob's child chain balance: ${JSON.stringify(bobChildchainBalance, null, 2)}`
 );
 ```
+
 Example output:
+
 ```
 Bob's child chain balance: [
   {
@@ -156,6 +165,7 @@ Bob's child chain balance: [
 ```
 
 ### 5. Logging root chain balances for Bob
+
 ```
 // ETH rootchain balance for Bob
 const bobRootchainBalance = await web3.eth.getBalance(bobAddress);
@@ -185,6 +195,7 @@ console.log(
 ```
 
 Example outputs:
+
 ```
 Bob's root chain balance: [
   {
@@ -199,17 +210,23 @@ Bob's root chain balance: [
 ```
 
 ## Running the sample
+
 1. Enter the `omg-js` folder if you're in the root `omg-samples` repository:
+
 ```
 cd omg-js
 ```
+
 2. Install dependencies:
+
 ```
 npm install
 ```
+
 3. Create `.env` file, modify configurations with required values (look at [.env.example](../../.env.example) or [README](../../README.md) of the `omg-js` repo for details).
 
 4. Run the app:
+
 ```
 npm run start
 ```
@@ -217,5 +234,3 @@ npm run start
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
 6. Select `Retrieve Balances` sample on the left side, observe the logs on the right.
-
-![img](../assets/images/01.png)

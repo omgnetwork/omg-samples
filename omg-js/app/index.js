@@ -33,13 +33,13 @@ const samples = [
     readme: "",
   },
   {
-    title: "04 - Make an ETH Transfer",
+    title: "04 - Make an ETH Transaction",
     script: transactionEth,
     code: "",
     readme: "",
   },
   {
-    title: "05 - Make an ERC20 Transfer",
+    title: "05 - Make an ERC20 Transaction",
     script: transactionErc20,
     code: "",
     readme: "",
@@ -75,13 +75,19 @@ const samples = [
     readme: "",
   },
   {
-    title: "11 - Start an ETH Inflight Exit",
+    title: "11 - Start an Inflight ETH Exit",
     script: exitInflightEth,
     code: "",
     readme: "",
   },
   {
-    title: "12 - Process an Exit",
+    title: "12 - Process an ETH Exit",
+    script: "",
+    code: "",
+    readme: "",
+  },
+  {
+    title: "13 - Process an ERC20 Exit",
     script: "",
     code: "",
     readme: "",
