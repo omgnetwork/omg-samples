@@ -1,8 +1,8 @@
-# Omg-js Sample Application
+# Omg-js Samples Application
 
 ## Description
 
-A Javascript application that allows interacting with `omg-js` library. Examples provided in the project will help to deposit funds to the OMG Network, show the best ways to make transfers between the wallets, submit valid and challenge invalid exits.
+A Javascript application that allows interacting with `omg-js` library. Examples provided in the project will help to deposit funds to the OMG Network, show the best ways to make transactions between the wallets, start and process exits, perform various operations with UTXOs, as well as challenge invalid exits.
 
 ## Contents
 
@@ -10,7 +10,7 @@ A Javascript application that allows interacting with `omg-js` library. Examples
 | ----------------------- | -------------------------------------------------------------------- |
 | `app`                   | Sample source files.                                                 |
 | `dist`                  | Build files that can be hosted on a server.                          |
-| `01-balances`           | Implementation for retrieving rootchain and childchain balances.     |
+| `01-balances`           | Implementation for retrieving root chain and child chain balances.     |
 | `02-deposit-eth`        | Implementation for depositing ETH to the OMG Network.                |
 | `02-deposit-erc20`      | Implementation for depositing ERC20 tokens to the OMG Network.       |
 | `03-transaction-eth`    | Implementation for making ETH transactions on the OMG Network.       |
@@ -20,7 +20,7 @@ A Javascript application that allows interacting with `omg-js` library. Examples
 | `04-utxo-split`         | Implementation for splitting UTXO for a given account.               |
 | `05-exit-eth`           | Implementation for exiting of ETH from the OMG Network.              |
 | `05-exit-erc20`         | Implementation for exiting of ERC20 tokens from the OMG Network.     |
-| `05-exit-inflight-eth`  | Implementation for in-fligh exits of ETH funds from the OMG Network. |
+| `05-exit-inflight-eth`  | Implementation for in-flight exits of ETH funds from the OMG Network. |
 | `05-exit-process-eth`   | Implementation for processing ETH exits on the OMG Network.          |
 | `05-exit-process-erx20` | Implementation for processing ERC20 exits on the OMG Network.        |
 | `helpers`               | Scripts that help to run certain parts of code samples.              |
@@ -42,6 +42,14 @@ A Javascript application that allows interacting with `omg-js` library. Examples
 - Basic understanding of Ethereum and the OMG Network concepts: UTXOs, gas, smart contracts, deposits, transfers, exits, challenges.
 - Access to two Web3 wallets where you can export private keys. Consider using [MetaMask](https://metamask.io/download.html) if you want flexibility in working with ERC20 tokens.
 - Funds on both of the Web3 wallets. For working with a testnet, you can get free tokens using [MetaMask Ropsten faucet](https://faucet.metamask.io).
+
+## API Documentation
+
+This project convers most of the functions of the `omg-js` library. If you need any extra info on specific functions or models, please refer to [omg-js API documentation](https://docs.omg.network/omg-js).
+
+## Alice and Bob
+
+In most of the code samples, Alice refers to the account of a sender (Wallet A), Bob refers to the account that receives funds (Wallet B). Notice, all of the samples use Alice as the primary wallet. You can change this behavior in `.env` file.
 
 ## Setup
 
@@ -87,7 +95,6 @@ BLOCKS_TO_WAIT_FOR_TXN=             <number of blocks to wait for confirmation>
 - If you encounter some issues with connecting to the network, make sure to check the latest details for `WATCHER_URL`, `PLASMAFRAMEWORK_CONTRACT_ADDRESS` on [the official documentation page](https://docs.omg.network/network-connection-details).
 - Put `WATCHER_PROXY_URL` only if you run your watcher. Otherwise, you might not be able to run any of the code samples in this project.
 - To find `ERC20_CONTRACT_ADDRESS` for a particular token you want to use, check [Etherscan Token Tracker](https://etherscan.io/tokens). If you're looking for ERC20 faucets, you can send 0 Ropsten ETH to a corresponding smart contract. Some of the projects typically send back test tokens to work with.
-- In most of the code samples, Alice refers to the account of a sender, Bob refers to the account that receives funds.
 
 Feel free to use the following configurations if you don't have time to set up your own:
 
