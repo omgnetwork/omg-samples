@@ -1,10 +1,10 @@
-# Process an ETH Exit for Alice
+# Process an ERC20 Exit for Alice
 
-_By the end of this tutorial you should know how to process an ETH exit for Alice wallet._
+_By the end of this tutorial you should know how to process an ERC20 exit for Alice wallet._
 
 ## Intro
 
-The example uses the `processExits` function provided by the `Rootchain` module of the `omg-js` library to process an ETH exit for a defined wallet.
+The example uses the `processExits` function provided by the `Rootchain` module of the `omg-js` library to process an ERC20 exit for a defined wallet.
 
 ## Prerequisites
 
@@ -13,14 +13,14 @@ The example uses the `processExits` function provided by the `Rootchain` module 
 ## Steps
 
 1. App setup
-2. Logging root chain ETH balance for Alice
+2. Logging root chain ERC20 balance for Alice
 3. Checking the exit queue
 4. Processing exits
 5. Waiting for exit confirmation
 
 ### 1. App setup
 
-You can find the full Javascript segment of this tutorial in [exit-process-eth.js](./exit-process-eth.js). The first lines define dependent libraries, set up configs for child chain and root chain, define wallet's data to be used during the sample.
+You can find the full Javascript segment of this tutorial in [exit-process-erc20.js](./exit-process-erc20.js). The first lines define dependent libraries, set up configs for child chain and root chain, define wallet's data to be used during the sample.
 
 ```
 import Web3 from "web3";
@@ -36,22 +36,27 @@ const rootChain = new RootChain({
   web3,
   plasmaContractAddress: config.plasmaframework_contract_address,
 });
-const aliceAddress = config.bob_eth_address;
-const alicePrivateKey = config.bob_eth_address_private_key;
-const token = OmgUtil.transaction.ETH_CURRENCY;
+const aliceAddress = config.alice_eth_address;
+const alicePrivateKey = config.alice_eth_address_private_key;
+const erc20ContractAddress = config.erc20_contract_address;
+const token = config.erc20_contract_address;
 ```
 
-### 2. Logging root chain ETH balance for Alice
+### 2. Logging root chain ERC20 balance for Alice
 
 Logging balances helps to see the changes in the wallets before and after making an exit. For more details, please refer to [Retrieve Balances](../01-balances/README.md) sample.
 
 ```
-const aliceRootchainBalance = await web3.eth.getBalance(aliceAddress);
+const aliceRootchainBalance = await OmgUtil.getErc20Balance({
+  web3,
+  address: aliceAddress,
+  erc20Address: erc20ContractAddress,
+});
 console.log(
   `Alice's root chain balance: ${web3.utils.fromWei(
     String(aliceRootchainBalance),
     "ether"
-  )} ETH`
+  )} ERC20`
 );
 console.log("-----");
 ```
@@ -59,7 +64,7 @@ console.log("-----");
 Example output:
 
 ```
-Alice's root chain balance: 4.658060987385107145 ETH
+Alice's root chain balance: 11.899999999999999982 ERC20
 ```
 
 ### 3. Checking the exit queue
@@ -68,8 +73,12 @@ Alice's root chain balance: 4.658060987385107145 ETH
 - For checking the exit queue, use the `getExitQueue` function provided by the `Rootchain` module of the `omg-js` library.
 
 ```
-const ethQueue = await rootChain.getExitQueue();
-const ethQueueHuman = ethQueue.map((e) => {
+if (!token) {
+  console.log("No ERC20 contract defined in config");
+  return;
+}
+const erc20Queue = await rootChain.getExitQueue(token);
+const erc20QueueHuman = erc20Queue.map((e) => {
   const container = {};
   container.priority = e.priority;
   container.exitableAt = new Date(
@@ -78,59 +87,35 @@ const ethQueueHuman = ethQueue.map((e) => {
   container.exitId = e.exitId;
   return container;
 });
+
 console.log(
-  "Current ETH exit queue: " + JSON.stringify(ethQueueHuman, null, 2)
+  "Current ERC20 exit queue: " + JSON.stringify(erc20QueueHuman, null, 2)
 );
 ```
 
 Example output:
 
 ```
-Current ETH exit queue: [
+Current ERC20 exit queue: [
   {
-    "priority": "41815608332351361027661228625132185933719156833599161145803972677096377627",
-    "exitableAt": "4/30/2020, 4:02:47 PM",
-    "exitId": "89160667830158176691353175134635535334051099"
-  },
-  {
-    "priority": "41817551028195764325326877131520998932097795613234764407293630707782817083",
-    "exitableAt": "5/1/2020, 12:32:35 PM",
-    "exitId": "1684424914325557521775690958865428683417883963"
-  },
-  {
-    "priority": "41816206321871528304806923552666042533843387752628189022849825104829580317",
+    "priority": "41816206321871528304806923558375033304667227276861332900647805650360566813",
     "exitableAt": "4/30/2020, 10:21:20 PM",
-    "exitId": "8401738825585107786388318953002999576559059997"
+    "exitId": "14110729596408947310621462830800980122090046493"
   },
   {
-    "priority": "41817637147322283303174158548490173952629040970473819236351664960249183356",
-    "exitableAt": "5/1/2020, 1:27:06 PM",
-    "exitId": "7852454235673577064391987640411528438282370172"
-  },
-  {
-    "priority": "41819924003735866460933795032643838789400667834972153033663035392913782591",
-    "exitableAt": "5/2/2020, 1:34:46 PM",
-    "exitId": "2764092707901949307008792616992248615269775167"
-  },
-  {
-    "priority": "41816334934507721515063319189001831936295585645675083082036481260732266962",
-    "exitableAt": "4/30/2020, 11:42:45 PM",
-    "exitId": "680226923209033266958449440063742689980430802"
-  },
-  {
-    "priority": "41816268982685071242483172541819333282198315087740440518763118341436438461",
+    "priority": "41816268982685071242483172540724530777383730520608779124774824033653537916",
     "exitableAt": "4/30/2020, 11:01:00 PM",
-    "exitId": "3238265969664322107290505156601842200534284221"
+    "exitId": "2143463464849737540158843762613547892751383676"
   },
   {
-    "priority": "41820058487532328085362190672843296111157422933722046482044330445651705600",
-    "exitableAt": "5/2/2020, 2:59:54 PM",
-    "exitId": "3100447060305733546952047770598946127289384704"
+    "priority": "41817637963492543734638505613254448457433498950026853003920283898407545538",
+    "exitableAt": "5/1/2020, 1:27:37 PM",
+    "exitId": "18923900211816089236403751758941901233056450"
   },
   {
-    "priority": "41820058487532328085362190670459288063231618290075735138311735789554525461",
-    "exitableAt": "5/2/2020, 2:59:54 PM",
-    "exitId": "716439012379928903305736426866351471192204565"
+    "priority": "41819984768928159510730847197562398187015099788269828009231053388485518759",
+    "exitableAt": "5/2/2020, 2:13:14 PM",
+    "exitId": "2800094986939966714579817544536564278207473063"
   }
 ]
 ```
@@ -144,8 +129,7 @@ Current ETH exit queue: [
 
 ```
 console.log("Processing exit...");
-
-const ethExitReceipt = await rootChain.processExits({
+const erc20ExitReceipt = await rootChain.processExits({
   token: token,
   exitId: 0,
   maxExitsToProcess: 1,
@@ -167,24 +151,24 @@ Processing exit...
 ### 5. Waiting for exit confirmation
 
 ```
-if (ethExitReceipt) {
-  console.log(`ETH exits processing: ${ethExitReceipt.transactionHash}`);
+if (erc20ExitReceipt) {
+  console.log(`ERC20 exits processing: ${erc20ExitReceipt.transactionHash}`);
   await OmgUtil.waitForRootchainTransaction({
     web3,
-    transactionHash: ethExitReceipt.transactionHash,
+    transactionHash: erc20ExitReceipt.transactionHash,
     checkIntervalMs: config.millis_to_wait_for_next_block,
     blocksToWait: config.blocks_to_wait_for_txn,
     onCountdown: (remaining) =>
       console.log(`${remaining} blocks remaining before confirmation`),
   });
-  console.log("ETH exits processed");
+  console.log("ERC20 exits processed");
 }
 ```
 
 Example output:
 
 ```
-ETH exits processing: 0xae5d499049a6e60e958f1bc59fe46f4dd9752b8b3edb3a6346ded8519d8a641d
+ERC20 exits processing: 0x48223846275575e32e5e47e2a9b6cf48318ca61d1dc18a7b0a8f1071db7193bb
 
 12 blocks remaining before confirmation
 
@@ -194,7 +178,7 @@ ETH exits processing: 0xae5d499049a6e60e958f1bc59fe46f4dd9752b8b3edb3a6346ded851
 
 9 blocks remaining before confirmation
 
-7 blocks remaining before confirmation
+8 blocks remaining before confirmation
 
 6 blocks remaining before confirmation
 
@@ -206,9 +190,11 @@ ETH exits processing: 0xae5d499049a6e60e958f1bc59fe46f4dd9752b8b3edb3a6346ded851
 
 2 blocks remaining before confirmation
 
+1 blocks remaining before confirmation
+
 0 blocks remaining before confirmation
 
-ETH exits processed
+ERC20 exits processed
 ```
 
 ## Running the sample
@@ -235,6 +221,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `Process an ETH exit` sample on the left side, observe the logs on the right:
+6. Select `Process an ERC20 exit` sample on the left side, observe the logs on the right:
 
-![img](../assets/images/12.png)
+![img](../assets/images/13.png)

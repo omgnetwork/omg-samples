@@ -13,20 +13,29 @@ const rootChain = new RootChain({
 });
 const aliceAddress = config.alice_eth_address;
 const alicePrivateKey = config.alice_eth_address_private_key;
-const token = OmgUtil.transaction.ETH_CURRENCY;
+const erc20ContractAddress = config.erc20_contract_address;
+const token = config.erc20_contract_address;
 
-async function exitProcessEth() {
-  const aliceRootchainBalance = await web3.eth.getBalance(aliceAddress);
+async function exitProcessErc20() {
+  const aliceRootchainBalance = await OmgUtil.getErc20Balance({
+    web3,
+    address: aliceAddress,
+    erc20Address: erc20ContractAddress,
+  });
   console.log(
     `Alice's root chain balance: ${web3.utils.fromWei(
       String(aliceRootchainBalance),
       "ether"
-    )} ETH`
+    )} ERC20`
   );
   console.log("-----");
 
-  const ethQueue = await rootChain.getExitQueue();
-  const ethQueueHuman = ethQueue.map((e) => {
+  if (!token) {
+    console.log("No ERC20 contract defined in config");
+    return;
+  }
+  const erc20Queue = await rootChain.getExitQueue(token);
+  const erc20QueueHuman = erc20Queue.map((e) => {
     const container = {};
     container.priority = e.priority;
     container.exitableAt = new Date(
@@ -35,13 +44,13 @@ async function exitProcessEth() {
     container.exitId = e.exitId;
     return container;
   });
-  if (ethQueue.length) {
+  if (erc20Queue.length) {
     console.log(
-      "Current ETH exit queue: " + JSON.stringify(ethQueueHuman, null, 2)
+      "Current ERC20 exit queue: " + JSON.stringify(erc20QueueHuman, null, 2)
     );
     console.log("Processing exit...");
 
-    const ethExitReceipt = await rootChain.processExits({
+    const erc20ExitReceipt = await rootChain.processExits({
       token: token,
       exitId: 0,
       maxExitsToProcess: 1,
@@ -51,22 +60,23 @@ async function exitProcessEth() {
         gas: 6000000,
       },
     });
-    console.log(ethExitReceipt);
-    if (ethExitReceipt) {
-      console.log(`ETH exits processing: ${ethExitReceipt.transactionHash}`);
+    if (erc20ExitReceipt) {
+      console.log(
+        `ERC20 exits processing: ${erc20ExitReceipt.transactionHash}`
+      );
       await OmgUtil.waitForRootchainTransaction({
         web3,
-        transactionHash: ethExitReceipt.transactionHash,
+        transactionHash: erc20ExitReceipt.transactionHash,
         checkIntervalMs: config.millis_to_wait_for_next_block,
         blocksToWait: config.blocks_to_wait_for_txn,
         onCountdown: (remaining) =>
           console.log(`${remaining} blocks remaining before confirmation`),
       });
-      console.log("ETH exits processed");
+      console.log("ERC20 exits processed");
     }
   } else {
-    console.log("No exits in ETH exit queue to process");
+    console.log("No exits in ERC20 exit queue to process");
   }
 }
 
-export { exitProcessEth };
+export { exitProcessErc20 };

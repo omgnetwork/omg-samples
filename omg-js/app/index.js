@@ -10,6 +10,7 @@ import { exitEth } from "./05-exit-standard-eth/exit-standard-eth.js";
 import { exitErc20 } from "./05-exit-standard-erc20/exit-standard-erc20.js";
 import { exitInflightEth } from "./05-exit-inflight-eth/exit-inflight-eth.js";
 import { exitProcessEth } from "./05-exit-process-eth/exit-process-eth.js";
+import { exitProcessErc20 } from "./05-exit-process-erc20/exit-process-erc20.js";
 
 import config from "../config";
 import "./assets/styles.scss";
@@ -90,7 +91,7 @@ const samples = [
   },
   {
     title: "13 - Process an ERC20 Exit",
-    script: "",
+    script: exitProcessErc20,
     code: "",
     readme: "",
   },
