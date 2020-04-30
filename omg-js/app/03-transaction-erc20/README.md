@@ -152,6 +152,12 @@ console.log("Transaction submitted: " + receipt.txhash);
 Example output:
 
 ```
+Signing transaction...
+
+Building transaction...
+
+Submitting transaction...
+
 Transaction submitted: 0x6840c4d5d365badf18dbfa490a39be0dd047368a78ea9e1bf71557a8a7aa2ab1
 ```
 
@@ -207,4 +213,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `Make an ERC20 Transaction` sample on the left side, observe the logs on the right.
+6. Select `Make an ERC20 Transaction` sample on the left side, observe the logs on the right:
+
+![img](../assets/images/05.png)

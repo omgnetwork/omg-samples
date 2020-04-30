@@ -179,6 +179,10 @@ if (!hasToken) {
 Example output:
 
 ```
+Signing transaction...
+
+Building transaction...
+
 The transaction has been created but wasn't submitted
 ```
 
@@ -247,14 +251,15 @@ await rootChain.piggybackInFlightExitOnOutput({
     from: bobAddress,
   },
 });
-console.log("Bob piggybacks his output");
+console.log("Bob piggybacks his output...");
 
 ```
 
 Example output:
 
 ```
-Bob piggybacks his output
+Bob piggybacks his output...
+Bob has piggybacked his output...
 ```
 
 ### 7. Checking the exit queue
@@ -317,4 +322,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `Start an In-flight ETH Exit` sample on the left side, observe the logs on the right.
+6. Select `Start an In-flight ETH Exit` sample on the left side, observe the logs on the right:
+
+![img](../assets/images/11.png)

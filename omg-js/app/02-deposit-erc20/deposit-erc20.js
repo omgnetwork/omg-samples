@@ -16,8 +16,8 @@ const childChain = new ChildChain({
   plasmaContractAddress: config.plasmaframework_contract_address,
 });
 
-const aliceAddress = config.bob_eth_address;
-const alicePrivateKey = config.bob_eth_address_private_key;
+const aliceAddress = config.alice_eth_address;
+const alicePrivateKey = config.alice_eth_address_private_key;
 const depositAmount = new BigNumber(
   web3.utils.toWei(config.alice_erc20_deposit_amount, "ether")
 );

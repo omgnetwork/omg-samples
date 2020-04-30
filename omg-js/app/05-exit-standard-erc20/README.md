@@ -8,19 +8,19 @@ The example uses `startStandardExit` and `getStandardExitId` functions provided 
 
 ## Prerequisites
 
-- At least 1 ERC20 UTXO in in Bob's OMG Network wallet. For creating a new UTXO, you can [make a deposit](../02-deposit-erc20/README.md), [receive a transaction](../03-transaction-erc20/README.md), or [split an existing UTXO](../04-utxo-split/README.md).
+- At least 1 ERC20 UTXO in in Alice's OMG Network wallet. For creating a new UTXO, you can [make a deposit](../02-deposit-erc20/README.md), [receive a transaction](../03-transaction-erc20/README.md), or [split an existing UTXO](../04-utxo-split/README.md).
 
 ## Steps
 
 1. App setup
-2. Logging root chain and child chain balances for Bob
-3. Logging ERC20 UTXOs for Bob
+2. Logging root chain and child chain balances for Alice
+3. Logging ERC20 UTXOs for Alice
 4. Checking the exit queue
 5. Starting a standard exit
 
 ### 1. App setup
 
-You can find the full Javascript segment of this tutorial in [exit-standard-erc20.js](./exit-standard-erc20.js). The first lines define dependent libraries, set up configs for child chain and root chain, define wallet's data for Bob.
+You can find the full Javascript segment of this tutorial in [exit-standard-erc20.js](./exit-standard-erc20.js). The first lines define dependent libraries, set up configs for child chain and root chain, define wallet's data for Alice.
 
 ```
 import Web3 from "web3";
@@ -41,37 +41,37 @@ const childChain = new ChildChain({
   plasmaContractAddress: config.plasmaframework_contract_address,
 });
 
-const bobAddress = config.bob_eth_address;
-const bobPrivateKey = config.bob_eth_address_private_key;
+const aliceAddress = config.alice_eth_address;
+const alicePrivateKey = config.alice_eth_address_private_key;
 ```
 
-### 2. Logging root chain and child chain balances for Bob
+### 2. Logging root chain and child chain balances for Alice
 
 Logging balances helps to understand the amount of funds available for submitting a standard exit. For performing this operation, use `getBalance` function provided by [web3.js](https://github.com/ethereum/web3.js) to retrieve the balance from the root chain (Ethereum Network), and `getBalance` function provided by [omg-js](https://github.com/omisego/omg-js) to retrieve balance from the child chain (OMG Network). For a more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
 
 ```
 async function logBalances() {
-  const bobRootchainBalance = await OmgUtil.getErc20Balance({
+  const aliceRootchainBalance = await OmgUtil.getErc20Balance({
     web3,
-    address: bobAddress,
+    address: aliceAddress,
     erc20Address: config.erc20_contract_address,
   });
-  const bobChildchainBalanceArray = await childChain.getBalance(bobAddress);
-  const bobErc20Object = bobChildchainBalanceArray.find(
+  const aliceChildchainBalanceArray = await childChain.getBalance(aliceAddress);
+  const aliceErc20Object = aliceChildchainBalanceArray.find(
     (i) =>
       i.currency.toLowerCase() === config.erc20_contract_address.toLowerCase()
   );
-  const bobChildchainBalance = bobErc20Object ? bobErc20Object.amount : 0;
+  const aliceChildchainBalance = aliceErc20Object ? aliceErc20Object.amount : 0;
 
   console.log(
-    `Bob's root chain ERC20 balance: ${web3.utils.fromWei(
-      String(bobRootchainBalance),
+    `Alice's root chain ERC20 balance: ${web3.utils.fromWei(
+      String(aliceRootchainBalance),
       "ether"
     )}`
   );
   console.log(
-    `Bob's child chain ERC20 balance: ${web3.utils.fromWei(
-      String(bobChildchainBalance),
+    `Alice's child chain ERC20 balance: ${web3.utils.fromWei(
+      String(aliceChildchainBalance),
       "ether"
     )}`
   );
@@ -82,14 +82,14 @@ async function exitErc20() {
     console.log("Please define an ERC20 contract in your .env");
     return;
   }
-  const bobRootchainBalance = await web3.eth.getBalance(bobAddress);
-  const bobsEtherBalance = web3.utils.fromWei(
-    String(bobRootchainBalance),
+  const aliceRootchainBalance = await web3.eth.getBalance(aliceAddress);
+  const aliceEtherBalance = web3.utils.fromWei(
+    String(aliceRootchainBalance),
     "ether"
   );
-  if (bobsEtherBalance < 0.001) {
+  if (aliceEtherBalance < 0.001) {
     console.log(
-      "Bob doesn't have enough ETH on the root chain to start an exit"
+      "Alice doesn't have enough ETH on the root chain to start an exit"
     );
     return;
   }
@@ -101,39 +101,40 @@ async function exitErc20() {
 Example output:
 
 ```
-Bob's root chain ERC20 balance: 0
+Alice's root chain ERC20 balance: 0
 
-Bob's child chain ERC20 balance: 5.46
+Alice's child chain ERC20 balance: 5.46
 ```
 
-### 3. Logging ERC20 UTXOs for Bob
+### 3. Logging ERC20 UTXOs for Alice
 
 - Logging UTXOs helps to understand how many UTXOs you have available to submit an exit. For a more detailed example, please refer to [Show UTXOs](../04-utxo-show/README.md) sample.
 - You can exit only 1 UTXO at a time. Consider [merging multiple UTXOs](../04-utxo-merge/README.md) into 1 UTXO or [splitting UTXO](../04-utxo-split/README.md) if you don't want to exit all of your funds at once with a single UTXO.
 
 ```
-const bobUtxos = await childChain.getUtxos(bobAddress);
-const bobUtxoToExit = bobUtxos.find(
+// get a ERC20 UTXO and exit data
+const aliceUtxos = await childChain.getUtxos(aliceAddress);
+const aliceUtxoToExit = aliceUtxos.find(
   (i) =>
     i.currency.toLowerCase() === config.erc20_contract_address.toLowerCase()
 );
-if (!bobUtxoToExit) {
-  console.log("Bob doesn't have any ERC20 UTXOs to exit");
+if (!aliceUtxoToExit) {
+  console.log("Alice doesn't have any ERC20 UTXOs to exit");
   return;
 }
 
 console.log(
-  `Bob wants to exit ${web3.utils.fromWei(
-    String(bobUtxoToExit.amount),
+  `Alice wants to exit ${web3.utils.fromWei(
+    String(aliceUtxoToExit.amount),
     "ether"
-  )} ERC20 with this UTXO:\n${JSON.stringify(bobUtxoToExit, undefined, 2)}`
+  )} ERC20 with this UTXO:\n${JSON.stringify(aliceUtxoToExit, undefined, 2)}`
 );
 ```
 
 Example output:
 
 ```
-Bob wants to exit 5.46 ERC20 with this UTXO:
+Alice wants to exit 5.46 ERC20 with this UTXO:
 {
   "amount": "4bc5d11259a20000",
   "blknum": 197000,
@@ -156,12 +157,13 @@ Bob wants to exit 5.46 ERC20 with this UTXO:
 - If the exit queue doesn't have this token, you can add it with `addToken` function provided by the `Rootchain` module of the `omg-js` library.
 
 ```
+// check if queue exists for this token
 const hasToken = await rootChain.hasToken(config.erc20_contract_address);
 if (!hasToken) {
-  console.log(`Adding a ${config.erc20_contract_address} exit queue`);
+  console.log(`Adding ${config.erc20_contract_address} exit queue`);
   await rootChain.addToken({
     token: config.erc20_contract_address,
-    txOptions: { from: bobAddress, privateKey: bobPrivateKey },
+    txOptions: { from: aliceAddress, privateKey: alicePrivateKey },
   });
 }
 ```
@@ -169,7 +171,7 @@ if (!hasToken) {
 Example output:
 
 ```
-Adding a 0xd74ef52053204c9887df4a0e921b1ae024f6fe31 exit queue
+Adding 0xd74ef52053204c9887df4a0e921b1ae024f6fe31 exit queue...
 ```
 
 ### 5. Starting a standard exit
@@ -181,32 +183,33 @@ Adding a 0xd74ef52053204c9887df4a0e921b1ae024f6fe31 exit queue
 - For checking the amount of time your exit will be available for processing, use `getExitTime` provided by the `Rootchain` module of the `omg-js` library. The time is returned in milliseconds. Feel free to convert it to a move convenient way.
 
 ```
-console.log("Starting an ERC20 exit...");
-const exitData = await childChain.getExitData(bobUtxoToExit);
+// start a standard exit
+console.log("Starting a standard ERC20 exit...");
+const exitData = await childChain.getExitData(aliceUtxoToExit);
 const standardExitReceipt = await rootChain.startStandardExit({
   utxoPos: exitData.utxo_pos,
   outputTx: exitData.txbytes,
   inclusionProof: exitData.proof,
   txOptions: {
-    privateKey: bobPrivateKey,
-    from: bobAddress,
+    privateKey: alicePrivateKey,
+    from: aliceAddress,
     gas: 6000000,
   },
 });
 console.log(
-  "Bob started a standard exit: " + standardExitReceipt.transactionHash
+  "Alice started a standard exit: " + standardExitReceipt.transactionHash
 );
 
 const exitId = await rootChain.getStandardExitId({
   txBytes: exitData.txbytes,
   utxoPos: exitData.utxo_pos,
-  isDeposit: bobUtxoToExit.blknum % 1000 !== 0,
+  isDeposit: aliceUtxoToExit.blknum % 1000 !== 0,
 });
 console.log("Exit id: " + exitId);
 
 const { msUntilFinalization } = await rootChain.getExitTime({
   exitRequestBlockNumber: standardExitReceipt.blockNumber,
-  submissionBlockNumber: bobUtxoToExit.blknum,
+  submissionBlockNumber: aliceUtxoToExit.blknum,
 });
 
 console.log("Exit time: " + msUntilFinalization + " ms");
@@ -217,7 +220,7 @@ Example output:
 ```
 Starting an ERC20 exit...
 
-Bob started a standard exit: 0x7c60389cfcbb65544c5a8578278e6e2e8d187d747f09d6bcf42b0311dd36951d
+Alice started a standard exit: 0x7c60389cfcbb65544c5a8578278e6e2e8d187d747f09d6bcf42b0311dd36951d
 
 Exit id: 14110729596408947310621462830800980122090046493
 
@@ -248,4 +251,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `Start a Standard ERC20 Exit` sample on the left side, observe the logs on the right.
+6. Select `Start a Standard ERC20 Exit` sample on the left side, observe the logs on the right:
+
+![img](../assets/images/10.png)

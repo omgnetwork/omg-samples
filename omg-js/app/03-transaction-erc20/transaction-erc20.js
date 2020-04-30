@@ -91,8 +91,14 @@ async function transactionErc20() {
   const privateKeys = new Array(createdTxn.transactions[0].inputs.length).fill(
     alicePrivateKey
   );
+
+  console.log("Signing transaction...");
   const signatures = childChain.signTransaction(typedData, privateKeys);
+  
+  console.log("Building transaction...");
   const signedTxn = childChain.buildSignedTransaction(typedData, signatures);
+  
+  console.log("Submitting transaction...");
   const receipt = await childChain.submitTransaction(signedTxn);
   console.log("Transaction submitted: " + receipt.txhash);
 

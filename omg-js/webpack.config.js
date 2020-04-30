@@ -19,6 +19,7 @@ module.exports = {
     exitEth: "./app/05-exit-standard-eth/exit-standard-eth.js",
     exitErc20: "./app/05-exit-standard-erc20/exit-standard-erc20.js",
     exitInflightEth: "./app/05-exit-inflight-eth/exit-inflight-eth.js",
+    exitProcessEth: "./app/05-exit-process-eth/exit-process-eth.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"),

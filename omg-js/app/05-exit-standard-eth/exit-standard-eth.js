@@ -16,56 +16,58 @@ const childChain = new ChildChain({
   plasmaContractAddress: config.plasmaframework_contract_address,
 });
 
-const bobAddress = config.bob_eth_address;
-const bobPrivateKey = config.bob_eth_address_private_key;
+const aliceAddress = config.alice_eth_address;
+const alicePrivateKey = config.alice_eth_address_private_key;
 
 async function logBalances() {
-  const bobRootchainBalance = await web3.eth.getBalance(bobAddress);
-  const bobChildchainBalanceArray = await childChain.getBalance(bobAddress);
-  const bobsEthObject = bobChildchainBalanceArray.find(
+  const aliceRootchainBalance = await web3.eth.getBalance(aliceAddress);
+  const aliceChildchainBalanceArray = await childChain.getBalance(aliceAddress);
+  const alicesEthObject = aliceChildchainBalanceArray.find(
     (i) => i.currency === OmgUtil.transaction.ETH_CURRENCY
   );
-  const bobChildchainETHBalance = bobsEthObject
-    ? `${web3.utils.fromWei(String(bobsEthObject.amount))} ETH`
+  const aliceChildchainETHBalance = alicesEthObject
+    ? `${web3.utils.fromWei(String(alicesEthObject.amount))} ETH`
     : "0 ETH";
 
   console.log(
-    `Bob's rootchain balance: ${web3.utils.fromWei(
-      String(bobRootchainBalance),
+    `Alice's rootchain balance: ${web3.utils.fromWei(
+      String(aliceRootchainBalance),
       "ether"
     )} ETH`
   );
-  console.log(`Bob's childchain balance: ${bobChildchainETHBalance}`);
+  console.log(`Alice's childchain balance: ${aliceChildchainETHBalance}`);
 }
 
 async function exitEth() {
-  const bobRootchainBalance = await web3.eth.getBalance(bobAddress);
-  const bobsEtherBalance = web3.utils.fromWei(
-    String(bobRootchainBalance),
+  const aliceRootchainBalance = await web3.eth.getBalance(aliceAddress);
+  const alicesEtherBalance = web3.utils.fromWei(
+    String(aliceRootchainBalance),
     "ether"
   );
-  if (bobsEtherBalance < 0.001) {
-    console.log("Bob doesnt have enough ETH on the root chain to start an exit");
+  if (alicesEtherBalance < 0.001) {
+    console.log(
+      "Alice doesn't have enough ETH on the root chain to start an exit"
+    );
     return;
   }
   await logBalances();
   console.log("-----");
 
   // get ETH UTXO and exit data
-  const bobUtxos = await childChain.getUtxos(bobAddress);
-  const bobUtxoToExit = bobUtxos.find(
+  const aliceUtxos = await childChain.getUtxos(aliceAddress);
+  const aliceUtxoToExit = aliceUtxos.find(
     (i) => i.currency === OmgUtil.transaction.ETH_CURRENCY
   );
-  if (!bobUtxoToExit) {
-    console.log("Bob doesn't have any ETH UTXOs to exit");
+  if (!aliceUtxoToExit) {
+    console.log("Alice doesn't have any ETH UTXOs to exit");
     return;
   }
 
   console.log(
-    `Bob's wants to exit ${web3.utils.fromWei(
-      String(bobUtxoToExit.amount),
+    `Alice's wants to exit ${web3.utils.fromWei(
+      String(aliceUtxoToExit.amount),
       "ether"
-    )} ETH with this UTXO:\n${JSON.stringify(bobUtxoToExit, undefined, 2)}`
+    )} ETH with this UTXO:\n${JSON.stringify(aliceUtxoToExit, undefined, 2)}`
   );
 
   // check if queue exists for this token
@@ -74,36 +76,37 @@ async function exitEth() {
     console.log(`Adding a ${OmgUtil.transaction.ETH_CURRENCY} exit queue`);
     await rootChain.addToken({
       token: OmgUtil.transaction.ETH_CURRENCY,
-      txOptions: { from: bobAddress, privateKey: bobPrivateKey },
+      txOptions: { from: aliceAddress, privateKey: alicePrivateKey },
     });
   }
 
   // start a standard exit
-  const exitData = await childChain.getExitData(bobUtxoToExit);
+  console.log("Starting a standard ETH exit...");
+  const exitData = await childChain.getExitData(aliceUtxoToExit);
   const standardExitReceipt = await rootChain.startStandardExit({
     utxoPos: exitData.utxo_pos,
     outputTx: exitData.txbytes,
     inclusionProof: exitData.proof,
     txOptions: {
-      privateKey: bobPrivateKey,
-      from: bobAddress,
+      privateKey: alicePrivateKey,
+      from: aliceAddress,
       gas: 6000000,
     },
   });
   console.log(
-    "Bob started a standard exit: " + standardExitReceipt.transactionHash
+    "Alice started a standard exit: " + standardExitReceipt.transactionHash
   );
 
   const exitId = await rootChain.getStandardExitId({
     txBytes: exitData.txbytes,
     utxoPos: exitData.utxo_pos,
-    isDeposit: bobUtxoToExit.blknum % 1000 !== 0,
+    isDeposit: aliceUtxoToExit.blknum % 1000 !== 0,
   });
   console.log("Exit id: " + exitId);
 
   const { msUntilFinalization } = await rootChain.getExitTime({
     exitRequestBlockNumber: standardExitReceipt.blockNumber,
-    submissionBlockNumber: bobUtxoToExit.blknum,
+    submissionBlockNumber: aliceUtxoToExit.blknum,
   });
 
   console.log("Exit time: " + msUntilFinalization + " ms");

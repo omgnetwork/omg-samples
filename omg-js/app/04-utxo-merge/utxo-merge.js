@@ -38,7 +38,7 @@ async function mergeUtxo() {
   );
 
   if (aliceUtxosAll.length > 1) {
-    console.log("Merging ETH UTXOs");
+    console.log("Merging UTXOs...");
     const utxosToMerge = aliceEthUtxos.slice(0, 4);
     const utxo = await childChain.mergeUtxos({
       utxos: utxosToMerge,

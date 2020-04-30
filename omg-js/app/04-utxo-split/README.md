@@ -119,6 +119,12 @@ Alice ERC20 UTXOs: [
 ### 3. Splitting UTXO
 
 - You can split a single UTXO into multiple UTXOs by explicitly specifying an array of objects in the payments argument of `createTransaction` function. The number of objects in this array equals to the number of new UTXOs you want to create. Notice, you can have maximum 4 new UTXOs during this process.
+- The example shows how to split ETH UTXO. For splitting ERC20 UTXO, change the `currencyToSplit` constant from `OmgUtil.transaction.ETH_CURRENCY` to `config.erc20_contract_address`.
+
+```
+const currencyToSplit = config.erc20_contract_address;
+```
+
 - In the sample the amount for each UTXO is equal to Alice's transfer amount (`alice_eth_transfer_amount`).
 - For creating a transaction, use `createTransaction` function provided by the `Childchain` module of the `omg-js` library.
 
@@ -172,6 +178,12 @@ console.log("Transaction submitted: " + receipt.txhash);
 Example output:
 
 ```
+Signing transaction...
+
+Building transaction...
+
+Submitting transaction...
+
 Transaction submitted: 0x86c624062262cda23d08e4198ab4ccb80b0ce54fd1ffed502755ab64087089cb
 ```
 
@@ -270,4 +282,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `Make an ETH Transfer` sample on the left side, observe the logs on the right.
+6. Select `Make an ETH Transfer` sample on the left side, observe the logs on the right:
+
+![img](../assets/images/08.png)

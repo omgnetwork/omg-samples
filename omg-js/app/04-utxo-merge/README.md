@@ -70,7 +70,7 @@ Example output:
 
 ```
 Alice has 3 ETH UTXOs and 1 ERC20 UTXOs
- 
+
 Alice ETH UTXOs: [
   {
     "amount": 761693000000000000,
@@ -115,7 +115,7 @@ Alice ETH UTXOs: [
     "utxo_pos": 166002000000000
   }
 ]
- 
+
 Alice ERC20 UTXOs: [
   {
     "amount": 78460000000000000008,
@@ -139,7 +139,7 @@ Alice ERC20 UTXOs: [
 - Due to technical architecture, Standard Exits can't be exited with multiple UTXOs. Instead, you have to submit each UTXO separately. Because a wallet may have several UTXOs, a user may choose to merge them first and only then submit a single exit. This saves a significant amount of time and prevents from overpaying for [Exit Bonds](https://docs.omg.network/exitbonds).
 - You may also consider using UTXO merging if you need to send a certain amount of funds that are split into more than 4 UTXOs.
 - The minimum number of UTXOs to merge is 2, the maximum — 4.
-- The sample demonstrates how to merge ETH UTXOs. If you want to merge ERC20 UTXOs, change an array that will be used for merging from `aliceEthUtxos` to `aliceErc20Utxos`. For example:
+- You can't mix ETH and ERC20 UTXOs when while performing merging. The sample demonstrates how to merge ETH UTXOs. If you want to merge ERC20 UTXOs, change an array that will be used for merging from `aliceEthUtxos` to `aliceErc20Utxos`. For example:
 
 ```
 const utxosToMerge = aliceErc20Utxos.slice(0, 4);
@@ -148,7 +148,7 @@ const utxo = await childChain.mergeUtxos({
    privateKey: alicePrivateKey,
    verifyingContract: config.plasmaframework_contract_address,
 });
-``` 
+```
 
 ```
 if (aliceUtxosAll.length > 1) {
@@ -187,18 +187,20 @@ if (aliceUtxosAll.length > 1) {
 Example output:
 
 ```
+Merging ERC20 UTXOs...
+
 Waiting for utxo: 1
- 
+
 Waiting for utxo: 2
- 
+
 Waiting for utxo: 3
- 
+
 Waiting for utxo: 4
- 
+
 Waiting for utxo: 5
- 
+
 Waiting for utxo: 6
- 
+
 Merged Alice UTXOs: [
   {
     "amount": 78460000000000000008,
@@ -229,7 +231,7 @@ Merged Alice UTXOs: [
     "utxo_pos": 167000000000000
   }
 ]
- 
+
 Alice UTXOs has length of 2
 ```
 
@@ -257,4 +259,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `Merge UTXOs` sample on the left side, observe the logs on the right.
+6. Select `Merge UTXOs` sample on the left side, observe the logs on the right:
+
+![img](../assets/images/07.png)

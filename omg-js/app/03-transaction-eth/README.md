@@ -216,6 +216,12 @@ console.log("Transaction submitted: " + receipt.txhash);
 Example output:
 
 ```
+Signing transaction...
+
+Building transaction...
+
+Submitting transaction...
+
 Transaction submitted: 0x97107fdb1a4c9201411bc56bde8e83500d2a76f1ad99f9e7d6207e56872b9c6a
 ```
 
@@ -271,4 +277,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `Make an ETH Transaction` sample on the left side, observe the logs on the right.
+6. Select `Make an ETH Transaction` sample on the left side, observe the logs on the right:
+
+![img](../assets/images/04.png)

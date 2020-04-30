@@ -153,7 +153,7 @@ Deposit successful: 0xbcb340775157d5f0d21ae8bd5b13d51b7dd62bf79737f8ceea1f46bf33
 
 - Watcher is a service that ensures the validity of all deposits, transfers and exits on the OMG Network. It is advisable to run your own Watcher if you have enough technical expertise to set it up.
 - The current sample shows that `1.9 ERC20 tokens` were sent to the root chain smart contract: the original amount was `25.199999999999999982`, the amount after is `23.299999999999999982`.
-- You will have to wait for some time until the transaction confirms on the OMG Network. The current number of required confirmations is 20. At the end of this period, you will see the updated ERC20 balance of Alice's address on the child chain: the original amount was `73.440000000000000008`, the amount after is `75.340000000000000008`.
+- You will have to wait for some time until the transaction confirms on the OMG Network to be able to use the funds. The current number of required confirmations for deposits is 10. At the end of this period, you will see the updated ERC20 balance of Alice's address on the child chain: the original amount was `73.440000000000000008`, the amount after is `75.340000000000000008`.
 
 ```
 console.log("Waiting for transaction to be recorded by the watcher...");
@@ -175,22 +175,6 @@ Example output:
 
 ```
 Waiting for a transaction to be recorded by the watcher...
-
-20 blocks remaining before confirmation
-
-19 blocks remaining before confirmation
-
-18 blocks remaining before confirmation
-
-17 blocks remaining before confirmation
-
-16 blocks remaining before confirmation
-
-15 blocks remaining before confirmation
-
-14 blocks remaining before confirmation
-
-13 blocks remaining before confirmation
 
 12 blocks remaining before confirmation
 
@@ -249,4 +233,6 @@ npm run start
 
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
-6. Select `Make an ERC20 Deposit` sample on the left side, observe the logs on the right.
+6. Select `Make an ERC20 Deposit` sample on the left side, observe the logs on the right:
+
+![img](../assets/images/03.png)

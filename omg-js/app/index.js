@@ -8,7 +8,9 @@ import { mergeUtxo } from "./04-utxo-merge/utxo-merge.js";
 import { splitUtxo } from "./04-utxo-split/utxo-split.js";
 import { exitEth } from "./05-exit-standard-eth/exit-standard-eth.js";
 import { exitErc20 } from "./05-exit-standard-erc20/exit-standard-erc20.js";
-import {exitInflightEth} from "./05-exit-inflight-eth/exit-inflight-eth.js";
+import { exitInflightEth } from "./05-exit-inflight-eth/exit-inflight-eth.js";
+import { exitProcessEth } from "./05-exit-process-eth/exit-process-eth.js";
+
 import config from "../config";
 import "./assets/styles.scss";
 
@@ -82,7 +84,7 @@ const samples = [
   },
   {
     title: "12 - Process an ETH Exit",
-    script: "",
+    script: exitProcessEth,
     code: "",
     readme: "",
   },

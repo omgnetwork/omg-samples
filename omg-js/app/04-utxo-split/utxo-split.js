@@ -16,11 +16,12 @@ const childChain = new ChildChain({
 
 const aliceAddress = config.alice_eth_address;
 const alicePrivateKey = config.alice_eth_address_private_key;
+const currencyToSplit = OmgUtil.transaction.ETH_CURRENCY;
 
 async function showUtxo() {
   const aliceUtxosAll = await childChain.getUtxos(aliceAddress);
   const aliceEthUtxos = aliceUtxosAll.filter(
-    (u) => u.currency === OmgUtil.transaction.ETH_CURRENCY
+    (u) => u.currency === currencyToSplit
   );
   const aliceErc20Utxos = aliceUtxosAll.filter(
     (u) =>
@@ -46,7 +47,7 @@ async function showUtxo() {
 async function logBalances() {
   const aliceBalanceArray = await childChain.getBalance(aliceAddress);
   const aliceEthObject = aliceBalanceArray.find(
-    (i) => i.currency === OmgUtil.transaction.ETH_CURRENCY
+    (i) => i.currency === currencyToSplit
   );
   return { aliceEthBalance: aliceEthObject ? aliceEthObject.amount : 0 };
 }
@@ -62,12 +63,12 @@ async function splitUtxo() {
   const payments = [
     {
       owner: aliceAddress,
-      currency: OmgUtil.transaction.ETH_CURRENCY,
+      currency: currencyToSplit,
       amount: Number(aliceSplitAmount),
     },
     {
       owner: aliceAddress,
-      currency: OmgUtil.transaction.ETH_CURRENCY,
+      currency: currencyToSplit,
       amount: Number(aliceSplitAmount),
     },
   ];
@@ -90,8 +91,14 @@ async function splitUtxo() {
   const privateKeys = new Array(createdTxn.transactions[0].inputs.length).fill(
     alicePrivateKey
   );
+
+  console.log("Signing transaction...");
   const signatures = childChain.signTransaction(typedData, privateKeys);
+
+  console.log("Building transaction...");
   const signedTxn = childChain.buildSignedTransaction(typedData, signatures);
+
+  console.log("Submitting transaction...");
   const receipt = await childChain.submitTransaction(signedTxn);
   console.log("Transaction submitted: " + receipt.txhash);
 
@@ -103,7 +110,7 @@ async function splitUtxo() {
     childChain,
     address: aliceAddress,
     expectedAmount,
-    currency: OmgUtil.transaction.ETH_CURRENCY,
+    currency: currencyToSplit,
   });
 
   console.log("-----");
@@ -111,4 +118,3 @@ async function splitUtxo() {
 }
 
 export { splitUtxo };
-

@@ -156,7 +156,7 @@ Deposit successful: 0x0e7d060a63cb65f629cc6d053e71397c7fa3250b41e36cb2cae40b2acb
 
 - Watcher is service one would need to run to perform validation for both root chain and child chain activities. It's one of the measures to ensure that the funds are safe and can't be maliciously spent or withdrawn back to the root chain network without required security checks. It would be great if everyone could run a watcher but unfortunately the process to set it up is rather complicated, so sufficient technical knowledge is required to run such a service at the moment.
 - The current sample shows that `0.03 ETH` were sent to the root chain smart contract: the original amount was `4.36180962350024 ETH`, the amount after is `4.33167880250024 ETH`.
-- You will have to wait for some time until the transaction confirms on the OMG Network. The current number of required confirmations is 20. At the end of this period, you will see the updated ETH balance of Alice's address: the original amount was `0.606903 ETH`, the amount after is `0.636903 ETH`.
+- You will have to wait for some time until the transaction confirms on the OMG Network to be able to use the funds. The current number of required confirmations for desposits is 10. At the end of this period, you will see the updated ETH balance of Alice's address: the original amount was `0.606903 ETH`, the amount after is `0.636903 ETH`.
 
 ```
 console.log("Waiting for transaction to be recorded by the watcher...");
@@ -178,22 +178,6 @@ Example output:
 
 ```
 Waiting for a transaction to be recorded by the watcher...
-
-20 blocks remaining before confirmation
-
-19 blocks remaining before confirmation
-
-18 blocks remaining before confirmation
-
-17 blocks remaining before confirmation
-
-16 blocks remaining before confirmation
-
-15 blocks remaining before confirmation
-
-14 blocks remaining before confirmation
-
-13 blocks remaining before confirmation
 
 12 blocks remaining before confirmation
 
@@ -255,3 +239,5 @@ npm run start
 5. Open your browser at [http://localhost:3000](http://localhost:3000).
 
 6. Select `Make an ETH Deposit` sample on the left side, observe the logs on the right.
+
+![img](../assets/images/02.png)

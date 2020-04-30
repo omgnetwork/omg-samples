@@ -119,7 +119,11 @@ async function exitInflightEth() {
     createdTxn.transactions[0],
     rootChainPlasmaContractAddress
   );
+
+  console.log("Signing transaction...");
   const signatures = childChain.signTransaction(typedData, [alicePrivateKey]);
+  
+  console.log("Building transaction...");
   const signedTxn = childChain.buildSignedTransaction(typedData, signatures);
   console.log("The transaction has been created but wasn't submitted");
 
@@ -127,7 +131,7 @@ async function exitInflightEth() {
   // check if queue exists for this token
   const hasToken = await rootChain.hasToken(ETH_CURRENCY);
   if (!hasToken) {
-    console.log(`Adding a ${ETH_CURRENCY} exit queue`);
+    console.log(`Adding ${ETH_CURRENCY} exit queue...`);
     await rootChain.addToken({
       token: ETH_CURRENCY,
       txOptions: { from: bobAddress, privateKey: bobPrivateKey },
@@ -162,6 +166,7 @@ async function exitInflightEth() {
   );
 
   // Bob needs to piggyback his output on the in-flight exit
+  console.log("Bob piggybacks his output...");
   await rootChain.piggybackInFlightExitOnOutput({
     inFlightTx: exitData.in_flight_tx,
     outputIndex: outputIndex,
@@ -170,7 +175,7 @@ async function exitInflightEth() {
       from: bobAddress,
     },
   });
-  console.log("Bob piggybacks his output");
+  console.log("Bob has piggybacked his output...");
   exitQueue();
 }
 

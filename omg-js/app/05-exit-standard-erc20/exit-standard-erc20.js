@@ -16,31 +16,31 @@ const childChain = new ChildChain({
   plasmaContractAddress: config.plasmaframework_contract_address,
 });
 
-const bobAddress = config.bob_eth_address;
-const bobPrivateKey = config.bob_eth_address_private_key;
+const aliceAddress = config.alice_eth_address;
+const alicePrivateKey = config.alice_eth_address_private_key;
 
 async function logBalances() {
-  const bobRootchainBalance = await OmgUtil.getErc20Balance({
+  const aliceRootchainBalance = await OmgUtil.getErc20Balance({
     web3,
-    address: bobAddress,
+    address: aliceAddress,
     erc20Address: config.erc20_contract_address,
   });
-  const bobChildchainBalanceArray = await childChain.getBalance(bobAddress);
-  const bobErc20Object = bobChildchainBalanceArray.find(
+  const aliceChildchainBalanceArray = await childChain.getBalance(aliceAddress);
+  const aliceErc20Object = aliceChildchainBalanceArray.find(
     (i) =>
       i.currency.toLowerCase() === config.erc20_contract_address.toLowerCase()
   );
-  const bobChildchainBalance = bobErc20Object ? bobErc20Object.amount : 0;
+  const aliceChildchainBalance = aliceErc20Object ? aliceErc20Object.amount : 0;
 
   console.log(
-    `Bob's root chain ERC20 balance: ${web3.utils.fromWei(
-      String(bobRootchainBalance),
+    `Alice's root chain ERC20 balance: ${web3.utils.fromWei(
+      String(aliceRootchainBalance),
       "ether"
     )}`
   );
   console.log(
-    `Bob's child chain ERC20 balance: ${web3.utils.fromWei(
-      String(bobChildchainBalance),
+    `Alice's child chain ERC20 balance: ${web3.utils.fromWei(
+      String(aliceChildchainBalance),
       "ether"
     )}`
   );
@@ -51,14 +51,14 @@ async function exitErc20() {
     console.log("Please define an ERC20 contract in your .env");
     return;
   }
-  const bobRootchainBalance = await web3.eth.getBalance(bobAddress);
-  const bobsEtherBalance = web3.utils.fromWei(
-    String(bobRootchainBalance),
+  const aliceRootchainBalance = await web3.eth.getBalance(aliceAddress);
+  const aliceEtherBalance = web3.utils.fromWei(
+    String(aliceRootchainBalance),
     "ether"
   );
-  if (bobsEtherBalance < 0.001) {
+  if (aliceEtherBalance < 0.001) {
     console.log(
-      "Bob doesn't have enough ETH on the root chain to start an exit"
+      "Alice doesn't have enough ETH on the root chain to start an exit"
     );
     return;
   }
@@ -66,21 +66,21 @@ async function exitErc20() {
   console.log("-----");
 
   // get a ERC20 UTXO and exit data
-  const bobUtxos = await childChain.getUtxos(bobAddress);
-  const bobUtxoToExit = bobUtxos.find(
+  const aliceUtxos = await childChain.getUtxos(aliceAddress);
+  const aliceUtxoToExit = aliceUtxos.find(
     (i) =>
       i.currency.toLowerCase() === config.erc20_contract_address.toLowerCase()
   );
-  if (!bobUtxoToExit) {
-    console.log("Bob doesn't have any ERC20 UTXOs to exit");
+  if (!aliceUtxoToExit) {
+    console.log("Alice doesn't have any ERC20 UTXOs to exit");
     return;
   }
 
   console.log(
-    `Bob wants to exit ${web3.utils.fromWei(
-      String(bobUtxoToExit.amount),
+    `Alice wants to exit ${web3.utils.fromWei(
+      String(aliceUtxoToExit.amount),
       "ether"
-    )} ERC20 with this UTXO:\n${JSON.stringify(bobUtxoToExit, undefined, 2)}`
+    )} ERC20 with this UTXO:\n${JSON.stringify(aliceUtxoToExit, undefined, 2)}`
   );
 
   // check if queue exists for this token
@@ -89,37 +89,37 @@ async function exitErc20() {
     console.log(`Adding a ${config.erc20_contract_address} exit queue`);
     await rootChain.addToken({
       token: config.erc20_contract_address,
-      txOptions: { from: bobAddress, privateKey: bobPrivateKey },
+      txOptions: { from: aliceAddress, privateKey: alicePrivateKey },
     });
   }
 
   // start a standard exit
-  console.log("Starting an ERC20 exit...");
-  const exitData = await childChain.getExitData(bobUtxoToExit);
+  console.log("Starting a standard ERC20 exit...");
+  const exitData = await childChain.getExitData(aliceUtxoToExit);
   const standardExitReceipt = await rootChain.startStandardExit({
     utxoPos: exitData.utxo_pos,
     outputTx: exitData.txbytes,
     inclusionProof: exitData.proof,
     txOptions: {
-      privateKey: bobPrivateKey,
-      from: bobAddress,
+      privateKey: alicePrivateKey,
+      from: aliceAddress,
       gas: 6000000,
     },
   });
   console.log(
-    "Bob started a standard exit: " + standardExitReceipt.transactionHash
+    "Alice started a standard exit: " + standardExitReceipt.transactionHash
   );
 
   const exitId = await rootChain.getStandardExitId({
     txBytes: exitData.txbytes,
     utxoPos: exitData.utxo_pos,
-    isDeposit: bobUtxoToExit.blknum % 1000 !== 0,
+    isDeposit: aliceUtxoToExit.blknum % 1000 !== 0,
   });
   console.log("Exit id: " + exitId);
 
   const { msUntilFinalization } = await rootChain.getExitTime({
     exitRequestBlockNumber: standardExitReceipt.blockNumber,
-    submissionBlockNumber: bobUtxoToExit.blknum,
+    submissionBlockNumber: aliceUtxoToExit.blknum,
   });
 
   console.log("Exit time: " + msUntilFinalization + " ms");
