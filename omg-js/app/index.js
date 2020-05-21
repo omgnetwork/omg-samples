@@ -116,6 +116,8 @@ const samples = [
   },
 ];
 
+let inProgress = false;
+
 // LOG CONFIG
 function logConfigs() {
   console.log(config);
@@ -215,23 +217,42 @@ function createLogBox(home) {
 
 // BUTTON CLICK
 function onSampleClick(sample) {
-  const subtitle = document.getElementById("subtitle");
-  subtitle.innerText = sample.title;
+  // check if any of the functions are running
+  if (!inProgress) {
+    const subtitle = document.getElementById("subtitle");
+    subtitle.innerText = sample.title;
 
-  const logBox = document.getElementById("logBox");
-  logBox.innerHTML = "";
+    let logBox = document.getElementById("logBox");
+    logBox.innerHTML = "";
 
-  sample.script();
+    // run a script for chosen sample
+    let sampleScript = new Promise((resolve, reject) => {
+      inProgress = true;
+      setTimeout(() => resolve(sample.script()), 1000);
 
-  console.log = function (message) {
-    if (typeof message == "object") {
-      logBox.innerHTML +=
-        (JSON && JSON.stringify ? JSON.stringify(message, null, 4) : message) +
-        "<br/> <br/>";
-    } else {
-      logBox.innerHTML += message + "<br/> <br/>";
-    }
-  };
+      // log the result
+      console.log = (message) => {
+        if (typeof message == "object") {
+          logBox.innerHTML +=
+            (JSON && JSON.stringify
+              ? JSON.stringify(message, null, 2)
+              : message) + "<br/> <br/>";
+        } else {
+          logBox.innerHTML += message + "<br/> <br/>";
+        }
+      };
+    });
+
+    // catch errors of the sample
+    sampleScript
+      .catch((error) => {
+        console.log("Error: ");
+        console.log(JSON.stringify(error, null, 2));
+      })
+      .finally(() => {
+        inProgress = false;
+      });
+  }
 }
 
 document.body.appendChild(app());
