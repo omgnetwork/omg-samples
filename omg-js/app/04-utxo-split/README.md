@@ -27,6 +27,7 @@ import BigNumber from "bn.js";
 import JSONBigNumber from "omg-json-bigint";
 import Web3 from "web3";
 import { ChildChain, OmgUtil } from "@omisego/omg-js";
+import wait from "../helpers/wait.js";
 import config from "../../config.js";
 
 const rootChainPlasmaContractAddress = config.plasmaframework_contract_address;
@@ -191,14 +192,14 @@ Transaction submitted: 0x86c624062262cda23d08e4198ab4ccb80b0ce54fd1ffed502755ab6
 
 ```
 console.log("Waiting for a transaction to be recorded by the watcher...");
-const expectedAmount = aliceSplitAmount.add(new BigNumber(aliceEthBalance));
+const expectedAmount = Number(aliceSplitAmount) + Number(aliceEthBalance);
 
-await OmgUtil.waitForChildchainBalance({
+await wait.waitForBalance(
   childChain,
-  address: aliceAddress,
+  aliceAddress,
   expectedAmount,
-  currency: OmgUtil.transaction.ETH_CURRENCY,
-});
+  currencyToSplit
+);
 
 console.log("-----");
 showUtxo();
