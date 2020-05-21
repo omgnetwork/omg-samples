@@ -56,7 +56,6 @@ async function mergeUtxo() {
     const utxo = await childChain.mergeUtxos({
       utxos: utxosToMerge,
       privateKey: alicePrivateKey,
-      verifyingContract: config.plasmaframework_contract_address,
     });
 
     console.log(

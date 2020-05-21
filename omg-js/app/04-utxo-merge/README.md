@@ -146,7 +146,6 @@ const utxosToMerge = aliceErc20Utxos.slice(0, 4);
 const utxo = await childChain.mergeUtxos({
    utxos: utxosToMerge,
    privateKey: alicePrivateKey,
-   verifyingContract: config.plasmaframework_contract_address,
 });
 ```
 
@@ -157,7 +156,6 @@ if (aliceUtxosAll.length > 1) {
   const utxo = await childChain.mergeUtxos({
     utxos: utxosToMerge,
     privateKey: alicePrivateKey,
-    verifyingContract: config.plasmaframework_contract_address,
   });
 
   console.log(

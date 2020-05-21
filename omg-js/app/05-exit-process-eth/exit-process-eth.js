@@ -64,7 +64,6 @@ async function exitProcessEth() {
         gas: 6000000,
       },
     });
-    console.log(ethExitReceipt);
     if (ethExitReceipt) {
       console.log(`ETH exits processing: ${ethExitReceipt.transactionHash}`);
       await OmgUtil.waitForRootchainTransaction({
