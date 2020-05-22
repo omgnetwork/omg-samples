@@ -14,6 +14,7 @@
 import { ChildChain, OmgUtil } from "@omisego/omg-js";
 import BigNumber from "bn.js";
 import Web3 from "web3";
+import wait from "../helpers/wait.js";
 import config from "../../config.js";
 
 const rootChainPlasmaContractAddress = config.plasmaframework_contract_address;
@@ -88,7 +89,7 @@ async function transactionErc20() {
     owner: aliceAddress,
     payments,
     fee,
-    metadata: "omg",
+    metadata: "data",
   });
   console.log(
     `Created a childchain transaction of ${web3.utils.fromWei(
@@ -107,22 +108,23 @@ async function transactionErc20() {
 
   console.log("Signing transaction...");
   const signatures = childChain.signTransaction(typedData, privateKeys);
-  
+
   console.log("Building transaction...");
   const signedTxn = childChain.buildSignedTransaction(typedData, signatures);
-  
+
   console.log("Submitting transaction...");
   const receipt = await childChain.submitTransaction(signedTxn);
   console.log("Transaction submitted: " + receipt.txhash);
 
   console.log("Waiting for a transaction to be recorded by the watcher...");
-  const expectedAmount = transferAmount + bobERC20Balance;
-  await OmgUtil.waitForChildchainBalance({
+  const expectedAmount = Number(transferAmount) + Number(bobERC20Balance);
+
+  await wait.waitForBalance(
     childChain,
-    address: bobAddress,
+    bobAddress,
     expectedAmount,
-    currency: config.erc20_contract_address,
-  });
+    config.erc20_contract_address
+  );
 
   console.log("-----");
   await logBalances();

@@ -26,6 +26,7 @@ You can find the full Javascript segment of this tutorial in [transaction-eth.js
 import BigNumber from "bn.js";
 import Web3 from "web3";
 import { ChildChain, OmgUtil } from "@omisego/omg-js";
+import wait from "../helpers/wait.js";
 import config from "../../config.js";
 
 const web3 = new Web3(new Web3.providers.HttpProvider(config.eth_node), null, {
@@ -229,13 +230,15 @@ Transaction submitted: 0x97107fdb1a4c9201411bc56bde8e83500d2a76f1ad99f9e7d6207e5
 
 ```
 // wait for transaction to be recorded by the watcher
-console.log("Waiting for transaction to be recorded by the watcher...");
-const expectedAmount = transferAmount.add(new BigNumber(bobETHBalance));
-await OmgUtil.waitForChildchainBalance({
+console.log("Waiting for transaction to be recorded by the Watcher...");
+const expectedAmount = Number(transferAmount) + Number(bobETHBalance);
+
+await wait.waitForBalance(
   childChain,
-  address: bobAddress,
+  bobAddress,
   expectedAmount,
-});
+  OmgUtil.transaction.ETH_CURRENCY
+);
 
 console.log("-----");
 await logBalances();
@@ -246,6 +249,15 @@ Example output:
 ```
 Waiting for a transaction to be recorded by the watcher...
 
+Waiting for balance: 1
+
+Waiting for balance: 2
+
+Waiting for balance: 3
+
+...
+
+Waiting for balance: 12
 -----
 
 Alice's child chain ETH balance: 0.681813 ETH

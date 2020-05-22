@@ -26,6 +26,7 @@ You can find the full Javascript segment of this tutorial in [transaction-erc20.
 import { ChildChain, OmgUtil } from "@omisego/omg-js";
 import BigNumber from "bn.js";
 import Web3 from "web3";
+import wait from "../helpers/wait.js";
 import config from "../../config.js";
 
 const rootChainPlasmaContractAddress = config.plasmaframework_contract_address;
@@ -164,14 +165,15 @@ Transaction submitted: 0x6840c4d5d365badf18dbfa490a39be0dd047368a78ea9e1bf71557a
 ### 5. Recording transaction by the Watcher
 
 ```
-console.log("Waiting for a transaction to be recorded by the watcher...");
-const expectedAmount = transferAmount + bobERC20Balance;
-await OmgUtil.waitForChildchainBalance({
+console.log("Waiting for a transaction to be recorded by the Watcher...");
+const expectedAmount = Number(transferAmount) + Number(bobERC20Balance);
+
+await wait.waitForBalance(
   childChain,
-  address: bobAddress,
+  bobAddress,
   expectedAmount,
-  currency: config.erc20_contract_address,
-});
+  config.erc20_contract_address
+);
 
 console.log("-----");
 await logBalances();
@@ -182,6 +184,15 @@ Example output:
 ```
 Waiting for a transaction to be recorded by the watcher...
 
+Waiting for balance: 1
+
+Waiting for balance: 2
+
+Waiting for balance: 3
+
+...
+
+Waiting for balance: 12
 -----
 
 Alice's child chain ERC20 balance: ‭76.900000000000000008

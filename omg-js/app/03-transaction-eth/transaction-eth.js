@@ -14,6 +14,7 @@
 import BigNumber from "bn.js";
 import Web3 from "web3";
 import { ChildChain, OmgUtil } from "@omisego/omg-js";
+import wait from "../helpers/wait.js";
 import config from "../../config.js";
 
 const web3 = new Web3(new Web3.providers.HttpProvider(config.eth_node), null, {
@@ -76,7 +77,7 @@ async function transactionEth() {
     owner: aliceAddress,
     payments,
     fee,
-    metadata: "omg",
+    metadata: "data",
   });
 
   console.log(
@@ -107,12 +108,14 @@ async function transactionEth() {
 
   // wait for transaction to be recorded by the watcher
   console.log("Waiting for a transaction to be recorded by the watcher...");
-  const expectedAmount = transferAmount.add(new BigNumber(bobETHBalance));
-  await OmgUtil.waitForChildchainBalance({
+  const expectedAmount = Number(transferAmount) + Number(bobETHBalance);
+  
+  await wait.waitForBalance(
     childChain,
-    address: bobAddress,
+    bobAddress,
     expectedAmount,
-  });
+    OmgUtil.transaction.ETH_CURRENCY
+  );
 
   console.log("-----");
   await logBalances();
