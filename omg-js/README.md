@@ -103,16 +103,16 @@ WATCHER_URL=https://watcher-info.ropsten.v1.omg.network
 WATCHER_PROXY_URL=
 PLASMAFRAMEWORK_CONTRACT_ADDRESS=0x96d5d8bc539694e5fa1ec0dab0e6327ca9e680f9
 ERC20_CONTRACT_ADDRESS=0xd74ef52053204c9887df4a0e921b1ae024f6fe31
-ALICE_ETH_ADDRESS=0x0dC8e240d90F3B0d511b6447543b28Ea2471401a
-ALICE_ETH_ADDRESS_PRIVATE_KEY=CD5994C7E2BF03202C59B529B76E5582266CEB384F02D32B470AC57112D0C6E7
+ALICE_ETH_ADDRESS=0x8CB0DE6206f459812525F2BA043b14155C2230C0
+ALICE_ETH_ADDRESS_PRIVATE_KEY=CD55F2A7C476306B27315C7986BC50BD81DB4130D4B5CFD49E3EAF9ED1EDE4F7
 ALICE_ETH_DEPOSIT_AMOUNT=0.01
 ALICE_ERC20_DEPOSIT_AMOUNT=20
 ALICE_ETH_TRANSFER_AMOUNT=0.005
 ALICE_ERC20_TRANSFER_AMOUNT=0.34
-BOB_ETH_ADDRESS=0x8b63BB2B829813ECe5C2F378d47b2862bE271c6C
-BOB_ETH_ADDRESS_PRIVATE_KEY=1027c05dcc6dba6b8fb6bb6efc90e374fee7da73e1069279be61a2dcf533b856
+BOB_ETH_ADDRESS=0xA9cc140410c2bfEB60A7260B3692dcF29665c254
+BOB_ETH_ADDRESS_PRIVATE_KEY=E4F82A4822A2E6A28A6E8CE44490190B15000E58C7CBF62B4729A3FDC9515FD2
 MILLIS_TO_WAIT_FOR_NEXT_BLOCK=1000
-BLOCKS_TO_WAIT_FOR_TXN=20
+BLOCKS_TO_WAIT_FOR_TXN=12
 ```
 
 > Private keys presented in this config file have only Ropsten testnet tokens. Please, spend them considerably, share with others. Make sure to never share your private keys to anyone if you deal with real funds (Ethereum mainnet).
@@ -138,6 +138,6 @@ You will see a `dist` folder created with static `.js`, `.css` and `index.html` 
 This project welcomes contributions and suggestions. Please follow the contribution flow as stated below:
 
 1. Clone the repository.
-2. Checkout to the branch with `<GIT_USERNAME>/dev` name.
+2. Checkout to the branch with `<GIT_USERNAME>/<FEATURE>` name.
 3. Make changes.
 4. Submit PR to the latest version branch (e.g. 1.3.1). Please, don't submit PRs to the master branch, they will be rejected automatically.
