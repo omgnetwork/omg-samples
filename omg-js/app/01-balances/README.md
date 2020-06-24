@@ -35,20 +35,6 @@ const childChain = new ChildChain({
 
 ### 2. Logging child chain balances for Alice
 
-- `getBalance` function returns an array of balances that contain BigNum objects ([BN.js](https://github.com/indutny/bn.js)). It helps to calculate big numbers in Javascript. A typical array has the following structure:
-
-```
-[
-  {
-    "amount": "01cdda4faccd0000",
-    "currency": "0x0000000000000000000000000000000000000000"
-  }
-]
-```
-
-- The amount in balance array is an [RLP encoded](https://github.com/ethereum/wiki/wiki/RLP) amount in WEI (e.g. `429903000000000000`), the smallest denomination of ether, ETH. You can use `fromWei` utils function to convert the balance to human-readable format.
-- The `currency` in balance array contains either `0x0000000000000000000000000000000000000000` (states that this is ETH currency) or ERC20 smart contract address (e.g. `0xd74ef52053204c9887df4a0e921b1ae024f6fe31`).
-
 ```
 // child chain balances for Alice
 const alicesBalanceArray = await childChain.getBalance(aliceAddress);

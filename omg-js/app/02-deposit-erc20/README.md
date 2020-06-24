@@ -117,10 +117,9 @@ ERC20 approved: 0x19b0dd9327587e223c72d374db35cf641eb129f3ee5e2a5edb57f77c43d9ba
 
 ### 4. Depositing ERC20 tokens from the root chain to the child chain
 
-- Each ERC20 token has a certain smart contract address. In this code sample you can observe a deposit of `EUR` token defined by `0xd74ef52053204c9887df4a0e921b1ae024f6fe31` smart contract.
-- A typical deposit uses the `deposit` function provided by the `Rootchain` module of the `omg-js` library.
-- If a transaction is successful, you will see a unique `transactionHash` you can verify on Ethereum block explorer, such as [Etherescan](https://ropsten.etherscan.io/tx/0xbcb340775157d5f0d21ae8bd5b13d51b7dd62bf79737f8ceea1f46bf33ae4fbe). Copy the hash and paste it in the search box for transaction's details.
-- Depositing also involves forming a pseudo-block of the child chain. Such a block contains a single transaction with the deposited funds as a new UTXO. You can check a new block on [the OMG Block Explorer](https://blockexplorer.ropsten.v1.omg.network).
+A typical deposit uses the `deposit` function provided by the `Rootchain` module of the `omg-js` library.
+
+Note, each ERC20 token has a certain smart contract address. In this sample you can observe a deposit of `EUR` token defined by `0xd74ef52053204c9887df4a0e921b1ae024f6fe31` smart contract.
 
 ```
 console.log(
@@ -151,9 +150,11 @@ Deposit successful: 0xbcb340775157d5f0d21ae8bd5b13d51b7dd62bf79737f8ceea1f46bf33
 
 ### 5. Recording transaction by the Watcher
 
-- Watcher is a service that ensures the validity of all deposits, transfers and exits on the OMG Network. It is advisable to run your own Watcher if you have enough technical expertise to set it up.
-- The current sample shows that `1.9 ERC20 tokens` were sent to the root chain smart contract: the original amount was `25.199999999999999982`, the amount after is `23.299999999999999982`.
-- You will have to wait for some time until the transaction confirms on the OMG Network to be able to use the funds. The current number of required confirmations for deposits is 10. At the end of this period, you will see the updated ERC20 balance of Alice's address on the child chain: the original amount was `73.440000000000000008`, the amount after is `75.340000000000000008`.
+Watcher is a service that ensures the validity of all deposits, transfers and exits on the OMG Network. It is advisable to run your own Watcher if you have enough technical expertise to set it up.
+
+The current sample shows that `1.9 ERC20 tokens` were sent to the root chain smart contract: the original amount was `25.199999999999999982`, the amount after is `23.299999999999999982`.
+
+You will have to wait for some time until the transaction confirms on the OMG Network to be able to use the funds. The current number of required confirmations for deposits is 10. At the end of this period, you will see the updated ERC20 balance of Alice's address on the child chain: the original amount was `73.440000000000000008`, the amount after is `75.340000000000000008`.
 
 ```
 console.log("Waiting for transaction to be recorded by the watcher...");
