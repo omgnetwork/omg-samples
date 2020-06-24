@@ -47,7 +47,7 @@ const alicePrivateKey = config.alice_eth_address_private_key;
 
 ### 2. Logging root chain and child chain balances for Alice
 
-Logging balances helps to understand the amount of funds available for submitting a standard exit. For performing this operation, use `getBalance` function provided by [web3.js](https://github.com/ethereum/web3.js) to retrieve the balance from the root chain (Ethereum Network), and `getBalance` function provided by [omg-js](https://github.com/omisego/omg-js) to retrieve balance from the child chain (OMG Network). For a more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
+Logging balances helps to understand the amount of funds available for submitting a standard exit. For performing this operation, use `getBalance` function provided by [web3.js](https://github.com/ethereum/web3.js) to retrieve the balance from the root chain (Ethereum Network), and `getBalance` function provided by [omg-js](https://github.com/omgnetwork/omg-js) to retrieve balance from the child chain (OMG Network). For a more detailed example, please refer to [Retrieve Balances](../01-balances/README.md) sample.
 
 ```
 async function logBalances() {
@@ -108,8 +108,9 @@ Alice's child chain ERC20 balance: 5.46
 
 ### 3. Logging ERC20 UTXOs for Alice
 
-- Logging UTXOs helps to understand how many UTXOs you have available to submit an exit. For a more detailed example, please refer to [Show UTXOs](../04-utxo-show/README.md) sample.
-- You can exit only 1 UTXO at a time. Consider [merging multiple UTXOs](../04-utxo-merge/README.md) into 1 UTXO or [splitting UTXO](../04-utxo-split/README.md) if you don't want to exit all of your funds at once with a single UTXO.
+Logging UTXOs helps to understand how many UTXOs you have available to submit an exit. For a more detailed example, please refer to [Show UTXOs](../04-utxo-show/README.md) sample.
+
+You can exit only 1 UTXO at a time. Consider [merging multiple UTXOs](../04-utxo-merge/README.md) into 1 UTXO or [splitting UTXO](../04-utxo-split/README.md) if you don't want to exit all of your funds at once with a single UTXO.
 
 ```
 // get a ERC20 UTXO and exit data
@@ -153,8 +154,9 @@ Alice wants to exit 5.46 ERC20 with this UTXO:
 
 ### 4. Checking the exit queue
 
-- Exits are processed in queues that contain tokens you can use to start an exit. Before you start an exit, the network has to verify that the exit queue for the token used in the UTXO exists. You can check that information with the `hasToken` function provided by the `Rootchain` module of the `omg-js` library.
-- If the exit queue doesn't have this token, you can add it with `addToken` function provided by the `Rootchain` module of the `omg-js` library.
+Exits are processed in queues that contain tokens you can use to start an exit. Before you start an exit, the network has to verify that the exit queue for the token used in the UTXO exists. You can check that information with the `hasToken` function provided by the `Rootchain` module of the `omg-js` library.
+
+If the exit queue doesn't have this token, you can add it with `addToken` function provided by the `Rootchain` module of the `omg-js` library.
 
 ```
 // check if queue exists for this token
@@ -176,11 +178,9 @@ Adding 0xd74ef52053204c9887df4a0e921b1ae024f6fe31 exit queue...
 
 ### 5. Starting a standard exit
 
-- For starting a standard exit, use `startStandardExit` function provided by the `Rootchain` module of the `omg-js` library.
-- A standard exit creates an exit receipt. Each exit has an id that identifies it. You can retrive the id using `getStandardExitId` function provided by the `Rootchain` module of the `omg-js` library.
-- Make sure to save the exit id value, you will need it in the future to finish processing an exit.
-- After an standard exit starts, you'll have to wait a certain amount of time before you can process that exit and receive your funds back on Ethereum Network. This time is called a challenge period and equals to two `minExitPeriod` (2 weeks) on the mainnet and 1 day on the Ropsten testnet (see Exit Period in [Network Connection](https://docs.omg.network/network-connection-details) for the latest info). The amount of time needed on the testnet can be altered in the future based on clients' requests. Therefore, a challenge period is an incentivized security measure that allows other users to challenge anybody's exits for validity and honesty. You can learn more about challenging exits in [the OMG Developer Portal](https://docs.omg.network/challenging-exits).
-- For checking the amount of time your exit will be available for processing, use `getExitTime` provided by the `Rootchain` module of the `omg-js` library. The time is returned in milliseconds. Feel free to convert it to a move convenient way.
+For starting a standard exit, use `startStandardExit` function provided by the `Rootchain` module of the `omg-js` library.
+
+For checking the amount of time your exit will be available for processing, use `getExitTime` provided by the `Rootchain` module of the `omg-js` library. The time is returned in milliseconds. Feel free to convert it to a move convenient way.
 
 ```
 // start a standard exit

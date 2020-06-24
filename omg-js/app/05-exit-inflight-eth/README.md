@@ -188,11 +188,9 @@ The transaction has been created but wasn't submitted
 
 ### 5. Starting an in-flight exit
 
-- An in-flight exit starts with `startInFlightExit` function provided by the `Rootchain` module of the `omg-js` library.
-- An in-flight exit creates an exit receipt. Each exit has an id that identifies it. You can retrieve the id using `getInFlightExitId` function provided by the `Rootchain` module of the `omg-js` library.
-- Make sure to save the exit id value, you will need it in the future to finish processing an exit.
-- After an in-flight exit starts, you'll have to wait a certain amount of time before you can process that exit and receive your funds back on Ethereum Network. This time is called a challenge period and equals to two `minExitPeriod` (2 weeks) on the mainnet and 1 day on the Ropsten testnet (see Exit Period in [Network Connection](https://docs.omg.network/network-connection-details) for the latest info). The amount of time needed on the testnet can be altered in the future based on clients' requests. Therefore, a challenge period is an incentivized security measure that allows other users to challenge anybody's exits for validity and honesty. You can learn more about challenging exits in [the OMG Developer Portal](https://docs.omg.network/challenging-exits).
-- For checking the amount of time your exit will be available for processing, use `getExitTime` provided by the `Rootchain` module of the `omg-js` library. The time is returned in milliseconds. Feel free to convert it to a more convenient way.
+An in-flight exit starts with `startInFlightExit` function provided by the `Rootchain` module of the `omg-js` library.
+
+For checking the amount of time your exit will be available for processing, use `getExitTime` provided by the `Rootchain` module of the `omg-js` library. The time is returned in milliseconds. Feel free to convert it to a more convenient way.
 
 ```
 
@@ -233,8 +231,9 @@ Exit id: 3238265969664322107290505156601842200534284221
 
 ### 6. Piggybacking Bob's output
 
-- For piggybacking in-flight outputs use `piggybackInFlightExitOnOutput` function provided by the `Rootchain` module of the `omg-js` library.
-- To exit an input or output of an in-flight transaction the user has to piggyback on it. When in-flight transaction exits, the child chain removes the inputs of the in-flight transaction from the spendable set and they can no longer be spent. Notice, if you don't piggyback your outputs, you won't be able to exit the funds from the network.
+For piggybacking in-flight outputs use `piggybackInFlightExitOnOutput` function provided by the `Rootchain` module of the `omg-js` library.
+
+To exit an input or output of an in-flight transaction the user has to piggyback on it. When in-flight transaction exits, the child chain removes the inputs of the in-flight transaction from the spendable set and they can no longer be spent. Notice, if you don't piggyback your outputs, you won't be able to exit the funds from the network.
 
 ```
 // Decode the transaction to get the index of Bob's output
@@ -264,7 +263,7 @@ Bob has piggybacked his output...
 
 ### 7. Checking the exit queue
 
-- You may want to verify that your id was included in the exit queue. You can do that by using the `getExitQueue` function provided by the `Rootchain` module of the `omg-js` library.
+You may want to verify that your id was included in the exit queue. You can do that by using the `getExitQueue` function provided by the `Rootchain` module of the `omg-js` library.
 
 ```
 async function exitQueue() {

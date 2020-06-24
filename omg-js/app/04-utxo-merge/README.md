@@ -136,10 +136,7 @@ Alice ERC20 UTXOs: [
 
 ### 3. Merging ETH UTXOs for Alice
 
-- Due to technical architecture, Standard Exits can't be exited with multiple UTXOs. Instead, you have to submit each UTXO separately. Because a wallet may have several UTXOs, a user may choose to merge them first and only then submit a single exit. This saves a significant amount of time and prevents from overpaying for [Exit Bonds](https://docs.omg.network/exitbonds).
-- You may also consider using UTXO merging if you need to send a certain amount of funds that are split into more than 4 UTXOs.
-- The minimum number of UTXOs to merge is 2, the maximum — 4.
-- You can't mix ETH and ERC20 UTXOs when while performing merging. The sample demonstrates how to merge ETH UTXOs. If you want to merge ERC20 UTXOs, change an array that will be used for merging from `aliceEthUtxos` to `aliceErc20Utxos`. For example:
+The sample demonstrates how to merge ETH UTXOs. If you want to merge ERC20 UTXOs, change an array that will be used for merging from `aliceEthUtxos` to `aliceErc20Utxos`. For example:
 
 ```
 const utxosToMerge = aliceErc20Utxos.slice(0, 4);

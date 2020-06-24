@@ -56,7 +56,7 @@ In most of the code samples, Alice refers to the account of a sender (Wallet A),
 1. Clone OMG code samples repository:
 
 ```
-git clone https://github.com/omisego/omg-samples.git
+git clone https://github.com/omgnetwork/omg-samples.git
 ```
 
 2. Enter the root of `omg-js` folder:

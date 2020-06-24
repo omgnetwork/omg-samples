@@ -119,8 +119,9 @@ Alice ERC20 UTXOs: [
 
 ### 3. Splitting UTXO
 
-- You can split a single UTXO into multiple UTXOs by explicitly specifying an array of objects in the payments argument of `createTransaction` function. The number of objects in this array equals to the number of new UTXOs you want to create. Notice, you can have maximum 4 new UTXOs during this process.
-- The example shows how to split ETH UTXO. For splitting ERC20 UTXO, change the `currencyToSplit` constant from `OmgUtil.transaction.ETH_CURRENCY` to `config.erc20_contract_address`.
+You can split a single UTXO into multiple UTXOs by explicitly specifying an array of objects in the payments argument of `createTransaction` function. The number of objects in this array equals to the number of new UTXOs you want to create. Notice, you can have maximum 4 new UTXOs during this process.
+
+The example shows how to split ETH UTXO. For splitting ERC20 UTXO, change the `currencyToSplit` constant from `OmgUtil.transaction.ETH_CURRENCY` to `config.erc20_contract_address`.
 
 ```
 const currencyToSplit = config.erc20_contract_address;

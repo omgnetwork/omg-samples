@@ -69,8 +69,7 @@ Alice's root chain balance: 11.899999999999999982 ERC20
 
 ### 3. Checking the exit queue
 
-- Checking the exit queue helps to see how many available exits the OMG Network has at a given moment.
-- For checking the exit queue, use the `getExitQueue` function provided by the `Rootchain` module of the `omg-js` library.
+Checking the exit queue helps to see how many available exits the OMG Network has at a given moment. For checking the exit queue, use the `getExitQueue` function provided by the `Rootchain` module of the `omg-js` library.
 
 ```
 if (!token) {
@@ -122,10 +121,11 @@ Current ERC20 exit queue: [
 
 ### 4. Processing exits
 
-- Exit processing is the final stage you need to accomplish to return ETH funds from the child chain back to the root chain.
-- For processing exits, use `processExits` function provided by the `Rootchain` module of the `omg-js` library.
-- The maximum number of exits you can process at the same time equals to the total number of your submitted exits that have passed the challenge period. You can set to process all exits at the same time or set a custom number of exits to process for testing purposes. The example uses 1 for `maxExitsToProcess`. For changing this number, modify the corresponding value of `maxExitsToProcess` key.
-- `exitId` key can take 0 or a string value of specific exitId. It's recommended to leave it as 0 to detect any exits that can be processed automatically.
+Exit processing is the final stage you need to accomplish to return ETH funds from the child chain back to the root chain. For processing exits, use `processExits` function provided by the `Rootchain` module of the `omg-js` library.
+
+The maximum number of exits you can process at the same time equals to the total number of your submitted exits that have passed the challenge period. You can set to process all exits at the same time or set a custom number of exits to process for testing purposes. The example uses 1 for `maxExitsToProcess`. For changing this number, modify the corresponding value of `maxExitsToProcess` key.
+
+`exitId` key can take 0 or a string value of specific exitId. It's recommended to leave it as 0 to detect any exits that can be processed automatically.
 
 ```
 console.log("Processing exit...");

@@ -4,7 +4,7 @@ _By the end of this tutorial you should know how to retrieve root chain and chil
 
 ## Intro
 
-The example uses `getBalance` function provided by [web3.js](https://github.com/ethereum/web3.js) to retrieve the balance from the root chain (Ethereum network), and `getBalance` or `getErc20Balance` functions provided by [omg-js](https://github.com/omisego/omg-js) to retrieve balance from the child chain (OMG Network).
+The example uses `getBalance` function provided by [web3.js](https://github.com/ethereum/web3.js) to retrieve the balance from the root chain (Ethereum network), and `getBalance` or `getErc20Balance` functions provided by [omg-js](https://github.com/omgnetwork/omg-js) to retrieve balance from the child chain (OMG Network).
 
 ## Steps
 

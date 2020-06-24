@@ -131,10 +131,6 @@ Created a childchain transaction of 0.34 ERC20 from Alice to Bob.
 
 ### 4. Signing, building and submitting a transaction
 
-- Each transaction should be signed by the owner of funds (UTXOs).
-- The payment transaction should have a specific format and encoded with [RLP encoding](https://github.com/ethereum/wiki/wiki/RLP).
-- The private key used to sign a transaction shouldn't be exposed to anyone under no circumstances. You should treat it more seriously than your bank account password.
-
 ```
 // type/sign/build/submit
 const typedData = OmgUtil.transaction.getTypedData(
